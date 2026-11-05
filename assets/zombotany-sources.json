@@ -1,0 +1,29 @@
+{
+  "source": "../fusion-mod/references/zombie-accuracy-13-0-9/portraits (native pose exports)",
+  "outputs": {
+    "zombotany-26.png": {
+      "source": "26.png",
+      "sha256": "8cc7c9b2bf01c9c0efdd858b270fc14822ad2f081d6cb7a044d68c0162a5db82"
+    },
+    "zombotany-27.png": {
+      "source": "27.png",
+      "sha256": "b9776caa7d20cf381ace7ffff7c6118300184ffe261dfd5aaddde0fe0a35175d"
+    },
+    "zombotany-28.png": {
+      "source": "28.png",
+      "sha256": "e38d82bb0ab3c029e16743fedd4b29c56caed277db8350730f9fd3292e84f656"
+    },
+    "zombotany-29.png": {
+      "source": "29.png",
+      "sha256": "48029ca70f438a2fde7beace43b20b82b7a12cbe6fdcdafcffd59192b5c1c3ff"
+    },
+    "zombotany-30.png": {
+      "source": "30.png",
+      "sha256": "ff6ff3f2a94246f094750110ec465d098fdf87135025da190dedfd14a3ce885d"
+    },
+    "zombotany-31.png": {
+      "source": "31.png",
+      "sha256": "ab2130e9e66c3bc2e903ea184254a312b8669d4756cf1ac37b41ee7701d4ebdd"
+    }
+  }
+}

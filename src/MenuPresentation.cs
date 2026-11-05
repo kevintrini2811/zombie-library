@@ -21,7 +21,7 @@ internal static class MenuPresentation {
             // The native menu owns icon placement and its border. The sprite
             // contains Zombie and dark lawn; no UI is added behind the text.
             ModMenuService.CreateEntry(mod).AddIcon(icon)
-                .AddDescription("Registrierung eigener Zombies und Sounds, Gummienten und Zombie-Almanach.").Register();
+                .AddDescription("Custom zombie and sound registration, ducky tubes, and a zombie almanac.").Register();
         } catch {
             if (icon != null) { Object.Destroy(icon); icon = null; }
             Object.Destroy(texture); throw;

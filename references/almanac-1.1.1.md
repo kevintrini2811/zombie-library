@@ -1,23 +1,23 @@
-# Statische Analyse der Almanachkorrektur 1.1.1
+# Static analysis of almanac correction 1.1.1
 
-## Beobachtung
+## observation
 
-Im vorhandenen `Player-prev.log` stehen fehlende Modelle für `almanac.zombies.all.0.name`, `zombieType` und `thumbnailBackground`. Die vorhandene Sichtungsdatei enthält bereits fünf native Typen sowie einen Fusion-Eintrag. Die Erfassung von Sichtungen funktioniert damit grundsätzlich; ein Zurücksetzen dieser Datei ist weder erforderlich noch vorgesehen.
+In the existing `Player-prev.log`, missing models are `almanac.zombies.all.0.name`, `zombieType` and `thumbnailBackground`. The existing triage file already contains five native types and a Fusion entry. The recording of sightings basically works; resetting this file is neither necessary nor intended.
 
-## Native Datenbindung
+## Native data binding
 
-Das installierte Bundle `uipanels_assets_all_68c57e595d634e479472142eadcc5c3a.bundle` enthält zwei Kartenlisten mit `m_key.Path = almanac.zombies.visible`. Die Detailansichten verwenden `almanac.zombies.selected` und das Format `almanac.zombies.all.{0}`. Die vollständige Liste und die sichtbare Liste haben unterschiedliche Aufgaben.
+The installed bundle `uipanels_assets_all_68c57e595d634e479472142eadcc5c3a.bundle` contains two card lists with `m_key.Path = almanac.zombies.visible`. The detailed views use `almanac.zombies.selected` and the format `almanac.zombies.all.{0}`. The full list and the visible list have different tasks.
 
-`GameAssembly.dll`, RVA `0x70ca20` (`AlmanacEntriesModel.UpdateEntries`): erstellt die vollständigen Eintragsmodelle mit stabilen Quellindizes. Nur nicht gesperrte Einträge werden in `m_visibleEntriesModel` aufgenommen. RVA `0x70c470` (`UpdateEntriesLockedState`): leert und erneuert die sichtbare Liste anhand des Lock-Status; bei abweichenden Anzahlen zwischen Quelle und vorhandenen Eintragsmodellen wird ein Fehler protokolliert. Die frühere Quellfilterung verletzte diese Bindungs- und Indexvoraussetzungen und ließ bei null Sichtungen `all.0` vollständig fehlen.
+`GameAssembly.dll`, RVA `0x70ca20` (`AlmanacEntriesModel.UpdateEntries`): builds the full entry models with stable source indices. Only unlocked entries will be included in `m_visibleEntriesModel`. RVA `0x70c470` (`UpdateEntriesLockedState`): empties and refreshes the visible list based on the lock status; If the numbers differ between the source and existing entry models, an error is logged. Previous source filtering violated these binding and indexing requirements and left `all.0` completely missing from zero sightings.
 
-## Korrektur und Invarianten
+## Fixed and invariants
 
-- Quelllisten werden nicht mehr gefiltert oder umnummeriert. Native Eintragsmodelle bleiben erhalten.
-- `UserService.IsLocked(AlmanacEntryData)` entscheidet nur bei Zombie-Einträgen anhand profilbezogener Sichtungen. Zombotany bleibt dem eigenen Tab vorbehalten.
-- Der native Lock-Refresh übernimmt Aufbau und Aktualisierung von `visible`, einschließlich Zählern und nativen Auswahlaktionen.
-- Neue Sichtungen erhöhen eine Sitzungsrevision, auch wenn das Speichern ausfällt. Der gebundene AppDataProvider aktualisiert seine Zombie-Liste bei geänderter Revision oder Profil-GUID. Beim Unbind wird die Referenz freigegeben.
-- Mod- und Entenfreigaben, Sichtungskriterien, native Spielstände und bestehende Sichtungsdateien bleiben erhalten.
+- Source lists are no longer filtered or renumbered. Native entry models are retained.
+- `UserService.IsLocked(AlmanacEntryData)` only decides on zombie entries based on profile-related sightings. Zombotany is reserved for your own tab.
+- The native lock refresh handles building and updating `visible`, including counters and native selection actions.
+- New sightings increment a session revision even if saving fails. The bound AppDataProvider updates its zombie list when the revision or profile GUID changes. When unbinding, the reference is released.
+- Mod and duck releases, viewing criteria, native savegames and existing viewing files are retained.
 
-## Prüfung und Grenzen
+## Test and limits
 
-Release-Build mit installierten IL2CPP-Referenzen: erfolgreich, keine Warnungen oder Fehler. Keine Testprogramme und kein Spielstart. Die UI-Darstellung, Controller-Navigation, Profilwechsel und Erstbegegnungen bleiben manuell zu prüfen. Die separaten Meldungen `Releasing render texture that is set as Camera.targetTexture!` beim Beenden sind kein Nachweis für die fehlenden Almanachmodelle; ihre Behebung ist mit dieser Änderung nicht bestätigt.
+Release build with IL2CPP references installed: successful, no warnings or errors. No test programs and no game start. The UI display, controller navigation, profile changes and first encounters remain to be checked manually. The separate messages `Releasing render texture that is set as Camera.targetTexture!` upon exit are not evidence of the missing almanac models; their fix is ​​not confirmed with this change.

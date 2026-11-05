@@ -1,21 +1,21 @@
 # Zombie Library Example
 
-Optionale MelonLoader-Mod mit Abhängigkeit auf Zombie Library. Sie registriert einen „Zähen Zombie“ mit 540 Lebenspunkten, leicht vergrößerter Darstellung, nativem Sound und automatischer Gummientenvariante. Im Zombie-Almanach erscheint ein eigener Tab „Zombie Example“.
+Optional MelonLoader mod with dependency on Zombie Library. It registers a “Tough Zombie” with 540 life points, slightly enlarged display, native sound and automatic rubber duck variant. A separate “Zombie Example” tab appears in the Zombie Almanac.
 
-Die Mod ersetzt durchschnittlich einen von zwanzig geeigneten natürlichen normalen Spawns. Explizite Library-Beschwörungen, bereits markierte Zombies, gepanzerte Zombies und Zen-Garten werden ausgeschlossen. Der gespeicherte Marker ist `Normal.mGraveX = -763001`. Der zusätzliche Zustand wird ohne erneute Initialisierung aus nativen Spielständen erkannt.
+The mod replaces on average one out of twenty suitable natural normal spawns. Explicit library summons, already marked zombies, armored zombies and Zen Garden are excluded. The saved marker is `Normal.mGraveX = -763001`. The additional state is recognized from native saves without reinitialization.
 
-`ExampleMod.cs` zeigt Registrierung, Initialisierung, Porträtbesitz, Soundzuordnung und sichere Zufallsersetzung. Für eigene Mods IDs und Marker ändern; nach Veröffentlichung müssen sie stabil bleiben.
+`ExampleMod.cs` shows registration, initialization, portrait ownership, sound mapping and safe random replacement. Change IDs and markers for your own mods; they must remain stable after publication.
 
-Bauen:
+Build:
 
 ```sh
 rtk proxy /home/kevin/modding/pvzreplanted/.tools/dotnet/dotnet build /home/kevin/modding/pvzreplanted/zombie-library/example-mod/ZombieLibraryExample.csproj -c Release
 ```
 
-Optional installieren:
+Optionally install:
 
 ```sh
 rtk proxy python3 /home/kevin/modding/pvzreplanted/zombie-library/tools/install.py --example
 ```
 
-Standardinstallation enthält diese Mod nicht. Spiel und Tests wurden nicht ausgeführt.
+Standard installation does not include this mod. Game and tests have not been run.

@@ -1,52 +1,52 @@
 # Zombie Library 1.1.1
 
-MelonLoader-Bibliothek für PvZ Replanted. Die Bibliothek registriert eigene Zombies, Sounds und Gummientenvarianten. Jede registrierte Mod erhält im Zombie-Almanach einen eigenen Tab. BloomEngine stellt den Menüeintrag bereit: nativer Zombie als Icon, abgedunkelter nativer Rasen im Icon als Hintergrund.
+MelonLoader library for PvZ Replanted. The library registers its own zombies, sounds and rubber duck variants. Each registered mod gets its own tab in the Zombie Almanac. BloomEngine provides the menu entry: native zombie as icon, darkened native lawn in icon as background.
 
-## Almanachkorrektur (1.1.1)
+## Almanac correction (1.1.1)
 
-Die vorherige Filterung entfernte Einträge aus `almanac.zombies.all`. Die nativen Detailbinder erwarten dort weiterhin gültige, feste Indizes, insbesondere `all.0`. `Player-prev.log` meldet entsprechend `Failed to find model [name almanac.zombies.all.0.name]` sowie fehlende Beschreibungs-, Zombie- und Hintergrundmodelle. Bei einer leeren Sichtungsliste existierte das benötigte Modell überhaupt nicht.
+The previous filtering removed entries from `almanac.zombies.all`. The native detail binders continue to expect valid, fixed indices there, especially `all.0`. `Player-prev.log` reports correspondingly `Failed to find model [name almanac.zombies.all.0.name]` as well as missing description, zombie and background models. If the viewing list was empty, the required model did not exist at all.
 
-Version 1.1.1 behält alle nativen Eintragsmodelle und deren Indizes bei. Die Sichtungsregel steuert stattdessen den nativen Lock-Status: Das Spiel erstellt daraus seine Kartenliste `visible`. Ungesehene Zombies und die sechs separat dargestellten Zombotany-Typen bleiben dort ausgeschlossen. Pflanzen werden nicht verändert. Neue Sichtungen aktualisieren die Kartenliste in `LateUpdate`; ein Levelabschluss ist dafür nicht erforderlich. Profilwechsel und erneutes Binden des Datenproviders lösen ebenfalls eine Aktualisierung aus. Bestehende Sichtungen bleiben erhalten; native Spielstände werden nicht geändert.
+Version 1.1.1 retains all native entry models and their indexes. The sighting rule instead controls the native lock status: the game uses this to create its card list `visible`. Unseen zombies and the six Zombotany types shown separately are excluded there. Plants are not changed. New sightings update the map list in `LateUpdate`; A level completion is not required. Changing the profile and rebinding the data provider also triggers an update. Existing sightings remain intact; native savegames are not changed.
 
-Statische Belege: `references/almanac-1.1.1.md`. Kompilierung gegen die installierten Spielreferenzen erfolgreich. Spiel und Testprogramme wurden nicht gestartet. Manuell zu prüfen: leeres Profil ohne rote Fehlertexte, vorhandene Sichtungen nach Neustart, erste Sichtung ohne Levelabschluss, Levelabschluss, Profilwechsel sowie Zombotany- und Fusion-Tabs.
+Static documents: `references/almanac-1.1.1.md`. Compilation against the installed game references successful. Game and test programs did not start. To be checked manually: empty profile without red error texts, existing sightings after restart, first sighting without level completion, level completion, profile change as well as Zombotany and Fusion tabs.
 
-## Zombotany und Sichtungen (1.1.0)
+## Zombotany and Sightings (1.1.0)
 
-Zusätzlich zu den Mod-Tabs gibt es den Tab **Zombotany** mit Erbsenkanonen-, Wallnuss-, Jalapeno-, Gatling-Erbsen-, Kürbis- und Riesenwallnuss-Zombie. Diese sechs nativen Typen stehen ausschließlich in diesem Tab. Ihre native Erzeugung, KI und gespeicherte Identität bleiben unverändert. Die Porträts stammen aus den bereits vorhandenen nativen Pose-Exporten; `assets/zombotany-sources.json` dokumentiert Herkunft und Hashes.
+In addition to the mod tabs, there is the **Zombotany** tab with Peashooter, Walnut, Jalapeno, Gatling Pea, Pumpkin, and Giant Walnut Zombie. These six native types are exclusive to this tab. Their native generation, AI, and stored identities remain unchanged. The portraits come from the existing native Pose exports; `assets/zombotany-sources.json` documents origin and hashes.
 
-Alle Zombie-Einträge erscheinen erst nach der ersten Sichtung: native Zombies, Zombotany und Mod-Zombies. Eine Sichtung erfordert einen lebenden, sichtbaren Zombie auf dem aktiven Spielfeld während des Spiels. Levelvorschau, Almanachvorschau, pausierte Boards und vollständig außerhalb des Spielfelds stehende Zombies zählen nicht. Land- und zusätzliche Entenvarianten werden getrennt erfasst. Ein Mod-Zombie schaltet den zugrunde liegenden nativen Zombie nicht frei.
+All zombie entries only appear after the first sighting: native zombies, zombotany and mod zombies. A sighting requires a live, visible zombie on the active board during play. Level previews, almanac previews, paused boards, and completely off-field zombies do not count. Land and additional duck variants are recorded separately. A mod zombie does not unlock the underlying native zombie.
 
-Die Bibliothek speichert Sichtungen pro Profil-GUID unter `UserData/ZombieLibrary/sightings.json`. Native Spielstände, Erfolge und Freischaltungen werden nicht verändert. Frühere Sichtungen können nicht zuverlässig rekonstruiert werden: Auch vorhandene Profile beginnen mit einer leeren Sichtungsliste. Bereits besiegte Zombies werden nicht pauschal freigeschaltet. Bei Lesefehlern bleibt die vorhandene Datei erhalten; bei Schreibfehlern bleibt neuer Fortschritt für die Sitzung verfügbar und der Fehler wird protokolliert.
+The library stores sightings per profile GUID under `UserData/ZombieLibrary/sightings.json`. Native savegames, achievements and activations will not be changed. Previous sightings cannot be reliably reconstructed: existing profiles also begin with an empty sighting list. Zombies that have already been defeated are not unlocked across the board. In the event of read errors, the existing file is retained; If there are typos, new progress remains available for the session and the error is logged.
 
-Die vollständige native Eintragsliste bleibt erhalten, damit Detailbinder und Auswahlindizes gültig bleiben. Die native Liste `visible` enthält ausschließlich gesichtete Zombies außerhalb von Zombotany. Neue Sichtungen und Profilwechsel aktualisieren die Sichtbarkeit über den nativen Lock-Refresh, ohne die Eintragsmodelle zu ersetzen. Gesehene native Zombies erhalten für die Almanachanzeige Zugriff unabhängig vom bisherigen Level-Lock. Leere Mod-Tabs zeigen „Noch keine Zombies gesichtet.“; Controller-Ziele bleiben innerhalb der sichtbaren Seite.
+The full native entry list is preserved so that detail binders and selection indexes remain valid. The native list `visible` only contains zombies sighted outside of Zombotany. New sightings and profile changes update visibility via native lock refresh without replacing entry models. Seen native zombies receive access to the almanac display regardless of their previous level lock. Empty mod tabs show “No zombies spotted yet.”; Controller targets remain within the visible page.
 
-Kompilierung und Installation erfolgen ohne Spielstart und ohne Testprogramme. Manuell zu prüfen: Erstbegegnung aller sechs Typen, unsichtbare Vorschauen, native Einträge vor/nach Sichtung, getrennte Entenfreigabe, Profilwechsel, Neustart, Sprache und Controller.
+Compilation and installation take place without starting the game and without test programs. To be checked manually: first encounter of all six types, invisible previews, native entries before/after sighting, separate duck release, profile change, restart, language and controller.
 
-## Menü-Icon und Startfehler (1.0.4)
+## Menu icon and startup error (1.0.4)
 
-Die Implementierung folgt jetzt der aktuellen Plant Library: Zombie und dunkler nativer Rasen sind in einem einzigen deckenden, quadratischen `menu-icon.png` zusammengefügt. BloomEngine übernimmt ausschließlich Platzierung und Rahmen. Es gibt keine zusätzliche Hintergrundfläche hinter dem Beschreibungstext und keinen periodischen Menü-Layout-Code.
+The implementation now follows the current Plant Library: Zombie and dark native lawn are merged into a single opaque square `menu-icon.png`. BloomEngine only handles placement and framing. There is no additional background space behind the description text and no periodic menu layout code.
 
-Version 1.0.3 rief `RectTransformUtility.CalculateRelativeRectTransformBounds` auf. Dieser Helfer ist im installierten IL2CPP-Spiel nicht nutzbar; `Latest.log` meldet `System.NotSupportedException: Method unstripping failed`. Der Aufruf und der gesamte Menü-Updatepfad wurden entfernt. Die wiederholten Fehler werden nicht abgefangen oder verdeckt, sondern ihre aufrufende Implementierung entfällt. Ein erfolgreicher Build allein prüft die Verfügbarkeit solcher entstrippten Methoden nicht.
+Version 1.0.3 called `RectTransformUtility.CalculateRelativeRectTransformBounds`. This helper cannot be used in the installed IL2CPP game; `Latest.log` reports `System.NotSupportedException: Method unstripping failed`. The call and the entire menu update path have been removed. The repeated errors are not caught or hidden, but their calling implementation is eliminated. A successful build alone does not check the availability of such stripped methods.
 
-`tools/export_assets.py` erstellt das Icon reproduzierbar aus den vorhandenen nativen Zombie- und Rasenexporten. Die Helligkeit des Rasens beträgt 35 %, die Icongröße 512 × 512 Pixel. `assets/sources.json` dokumentiert Quellen, Komposition und Hashes. Spiel und Tests wurden nicht gestartet; die Darstellung beim nächsten Spielstart bleibt manuell zu prüfen.
+`tools/export_assets.py` creates the icon reproducibly from the existing native zombie and lawn exports. The brightness of the lawn is 35%, the icon size is 512 × 512 pixels. `assets/sources.json` documents sources, composition and hashes. Game and tests did not start; The display the next time you start the game remains to be checked manually.
 
-## Frühere Menü-Implementierung (1.0.3, ersetzt durch 1.0.4)
+## Previous menu implementation (1.0.3, replaced by 1.0.4)
 
-Im Screenshot `Bildschirmfoto_20261103_074616.png` endet der Rasen mitten im transparenten Zombie-Icon. BloomEngine positioniert den Icon-Container links außerhalb der eigentlichen Eintragsfläche. Der Hintergrund schließt jetzt die tatsächlichen Icon-Grenzen einschließlich Rahmen ein. Die Grenzen werden nach Layout- und Auflösungsänderungen erneut berechnet. Der dekorative Hintergrund nimmt nicht am nativen Layout teil. Das native Zombie-Sprite und der native Menürahmen bleiben erhalten. Spiel und Tests wurden nicht gestartet.
+In the screenshot `Bildschirmfoto_20261103_074616.png`, the lawn ends in the middle of the transparent zombie icon. BloomEngine positions the icon container to the left outside of the actual entry area. The background now includes the actual icon boundaries including frames. Boundaries are recalculated after layout and resolution changes. The decorative background does not participate in the native layout. The native zombie sprite and native menu frame are retained. Game and tests did not start.
 
-## Auswahlhelligkeit (1.0.2)
+## Selection brightness (1.0.2)
 
-Die Screenshots `Bildschirmfoto_20261103_071611.png` und `Bildschirmfoto_20261103_071627.png` zeigen die native Aufhellung und die zuvor weiße Mod-Karte. Die Auswahl verwendet jetzt den unveränderten nativen `ColorBlock` des Zombie-Buttons direkt auf dem Kartenbild. Die deckende weiße `OverState`-Grafik bleibt deaktiviert. Getrennte Mod-Porträts und Entenbilder folgen derselben Farbübergangsanimation. Spiel und Tests wurden nicht gestartet.
+Screenshots `Bildschirmfoto_20261103_071611.png` and `Bildschirmfoto_20261103_071627.png` show the native brightening and the previously white mod map. The selection now uses the unchanged native `ColorBlock` of the zombie button directly on the map image. The solid white `OverState` graphic remains disabled. Separate mod portraits and duck images follow the same color transition animation. Game and tests did not start.
 
-## Native Kartenansicht (1.0.1)
+## Native map view (1.0.1)
 
-Die Screenshots vom 3. November 2026 zeigen den Unterschied zwischen nativen Zombie-Karten und den bisherigen grauen Mod-Karten. Die Bibliothek verwendet exportierte native Kartenhintergründe und Rahmen. Native Button-Farben markieren Hover und Auswahl. Zusätzliche grüne Kartennamen entfallen; Namen stehen wie im Original in der Detailansicht. Die native Rasterausrichtung bleibt erhalten. Die Vorlagen benötigen ihre entfernten Bildbinder nicht mehr, um gültige Kartengrafiken zu erhalten.
+The screenshots from November 3, 2026 show the difference between native zombie maps and the previous gray mod maps. The library uses exported native card backgrounds and frames. Native button colors highlight hover and selection. Additional green card names are omitted; Names are in the detailed view as in the original. The native grid alignment is preserved. The templates no longer require their removed image binders to obtain valid card graphics.
 
-`ZombieDefinition.Thumbnail(german, duck)` kann ein vollständiges Kartenbild einschließlich Rahmen liefern. Ohne Callback ergänzt die Bibliothek den nativen Rahmen um `Portrait`. Fusion liefert eigene Nahansichten für beide Spezialzombies und originale Almanachbilder für native Zombies. Entenvarianten enthalten die native Ente im Vorschaubild. Alle Sprites bleiben im Besitz der jeweiligen Mod.
+`ZombieDefinition.Thumbnail(german, duck)` can provide a full card image including frame. Without a callback, the library adds `Portrait` to the native framework. Fusion provides custom close-ups for both specialty zombies and original almanac images for native zombies. Duck variants include the native duck in the preview image. All sprites remain the property of the respective mod.
 
-`tools/export_almanac_assets.py` exportiert die nativen Kartenebenen und baut die Fusion-Vorschaubilder aus vorhandenen Originalgrafiken. Herkunft und Hashes stehen in `assets/almanac-sources.json`. Der Export startet weder Spiel noch Tests.
+`tools/export_almanac_assets.py` exports the native map layers and builds the Fusion preview images from existing original graphics. Origin and hashes are in `assets/almanac-sources.json`. The export does not start the game or tests.
 
-## Registrierung
+## registration
 
 ```csharp
 using ZombieLibrary;
@@ -68,39 +68,39 @@ zombie.Portrait = german => myPortraitSprite;
 var actor = Zombies.Spawn(zombie, board, row);
 ```
 
-Abhängigkeit in der eigenen Mod angeben:
+Specify dependency in your own mod:
 
 ```csharp
 [assembly: MelonAdditionalDependencies("ZombieLibrary")]
 ```
 
-`RegisterCatalog` muss vor `RegisterZombie` aufgerufen werden. IDs und Identitäten müssen eindeutig sein. Nach Veröffentlichung dürfen gespeicherte Marker nicht geändert werden. Die Bibliothek lehnt synthetische Zombie-Enums ab. Unterstützt sind negative Marker in `Normal.mGraveX` und `PeaHead.mSummonCounter`; diese Felder sind bei der jeweiligen nativen Lauf-KI unbenutzt. Weitere native KI-Typen benötigen zuerst einen Nachweis geeigneter gespeicherter Felder.
+`RegisterCatalog` must be called before `RegisterZombie`. IDs and identities must be unique. Once published, saved markers may not be changed. The library rejects synthetic zombie enums. Negative markers are supported in `Normal.mGraveX` and `PeaHead.mSummonCounter`; these fields are unused with the respective native running AI. Other native AI types first require proof of suitable stored fields.
 
-`Apply(definition, actor)` wandelt einen frisch erzeugten, lebenden nativen Zombie passenden Typs um. Das Markerfeld muss frei sein. Andere registrierte Varianten werden nicht überschrieben. Wiederholtes Anwenden derselben Definition initialisiert und vertont den Zombie nicht erneut. `Spawn` kapselt die native Erzeugung, prüft die Zeilengrenzen und entfernt den neuen Zombie, wenn seine nachgelagerte Initialisierung fehlschlägt. Bewusst erzwungene Beschwörungen behalten die native Factory-Semantik; natürliche Spawn-Auswahl und Levelregeln bleiben Aufgabe der erzeugenden Mod.
+`Apply(definition, actor)` converts a freshly created, living native zombie of the appropriate type. The marker field must be free. Other registered variants are not overwritten. Repeatedly applying the same definition will not initialize and resound the zombie. `Spawn` encapsulates native generation, checks row boundaries, and removes the new zombie if its downstream initialization fails. Deliberately forced summons retain native factory semantics; Natural spawn selection and level rules remain the responsibility of the creating mod.
 
-Natürliche Zufallsersetzungen prüfen `Zombies.IsExplicitSpawn`, damit eine explizite Beschwörung nicht eine andere Variante erhält. Sie sollten nur geeignete, unmarkierte normale Zombies ersetzen. Die Bibliothek fügt selbst keine Zombies zu Wellen hinzu. Das vollständige Beispiel zeigt diese Prüfung.
+Natural random substitutions check `Zombies.IsExplicitSpawn` so that an explicit summon doesn't get a different variant. You should only replace suitable, unmarked normal zombies. The library itself does not add zombies to waves. The complete example shows this test.
 
-`Find(actor)` erkennt Varianten unmittelbar anhand nativer gespeicherter Felder. Nach Laden läuft `Tick`, jedoch weder `Initialize` noch `SpawnSound`. Bei Wiederverwendung durch den nativen Objektpool entfernt die Bibliothek den bekannten Marker. `Tick` folgt `Zombie.Update` und pausiert mit dem Board; die Mod prüft darin ihre eigenen Regeln für Tod, Spielmodus und Sonderphasen. `RefreshVisuals` läuft einmal pro Bild vor der Entendarstellung und darf pausierte Animationen nicht selbst fortschreiben. Eigene laufende Zustände müssen in nachweislich geeigneten gespeicherten Feldern liegen.
+`Find(actor)` instantly detects variants based on native stored fields. After loading, `Tick` runs, but neither `Initialize` nor `SpawnSound`. When reused by the native object pool, the library removes the known marker. `Tick` follows `Zombie.Update` and pauses the board; The mod checks its own rules for death, game mode and special phases. `RefreshVisuals` runs once per image before the duck display and is not allowed to continue paused animations itself. Own running states must be in demonstrably suitable stored fields.
 
-## Sounds und Gummienten
+## Sounds and rubber ducks
 
-`RegisterSound(id, FoleyType)` verwendet das native Soundsystem mit dessen Lautstärke- und Stummschaltung. `RegisterSound(id, Action<Zombie>)` erlaubt eigene Soundquellen. `PlaySound(id, actor)` spielt registrierte Sounds bei einem selbst gewählten Ereignis. Ressourcen und Laufzeit der eigenen Audioquellen gehören der registrierenden Mod. Unbekannte und doppelte Sound-IDs werden abgelehnt.
+`RegisterSound(id, FoleyType)` uses the native sound system with its volume and mute controls. `RegisterSound(id, Action<Zombie>)` allows your own sound sources. `PlaySound(id, actor)` plays registered sounds at a self-selected event. Resources and runtime of your own audio sources belong to the registering mod. Unknown and duplicate sound IDs are rejected.
 
-`rubberDuck: true` aktiviert Poolunterstützung und erzeugt automatisch einen zusätzlichen Almanacheintrag. Die Variante bleibt derselbe gespeicherte Zombie; native Poolzustände entscheiden zwischen Land und Wasser. Bewegung, KI, Kollisionen und Fähigkeiten bleiben erhalten. Die Bibliothek verwendet die originale Gummiente, native Spine-Posen, Wasserlinien-Clipping und passende Zeichenreihenfolgen. Tanzende Zombies behalten ihre Aufstehphase und Nachbarzeilenprüfung.
+`rubberDuck: true` enables pool support and automatically creates an additional almanac entry. The variant remains the same saved zombie; native pool states decide between land and water. Movement, AI, collisions and abilities are retained. The library uses the original rubber duck, native spine poses, waterline clipping and matching draw orders. Dancing zombies retain their stand-up phase and adjacent line check.
 
-`RegisterDuckVariant(mod, id, nativeType, english, german)` registriert die zusätzliche Poolvariante eines vorhandenen nativen Zombies. Unterstützt sind Football, JackInTheBox, Dancer, BackupDancer, Yeti, Gargantuar, RedeyeGargantuar, SquashHead und PeaHead. Solche Einträge verwenden die native Erzeugung, keine eigenen Marker. `RegisterNativeDuck(type)` aktiviert dieselbe Unterstützung ohne zusätzlichen Almanacheintrag. Der gewählte native Typ erhält damit grundsätzlich Poolunterstützung.
+`RegisterDuckVariant(mod, id, nativeType, english, german)` registers the additional pool variant of an existing native zombie. Supported are Football, JackInTheBox, Dancer, BackupDancer, Yeti, Gargantuar, RedeyeGargantuar, SquashHead and PeaHead. Such entries use native generation, not their own markers. `RegisterNativeDuck(type)` enables the same support without additional almanac entry. The selected native type basically receives pool support.
 
-Eigene Rigs können `PlacePoolDuck(actor, renderer)` setzen. Der Callback platziert die von der Bibliothek verwaltete Ente und gibt erst bei fertiger Pose `true` zurück. `PoolDuckVisuals.Waterline` und `PoolSpriteClip` erlauben denselben Wasserlinien-Schnitt für importierte Körpergrafiken. Fusion nutzt dies für den Augenzombie.
+Your own rigs can set `PlacePoolDuck(actor, renderer)`. The callback places the duck managed by the library and only returns `true` when the pose is finished. `PoolDuckVisuals.Waterline` and `PoolSpriteClip` allow the same waterline cut for imported body graphics. Fusion uses this for the eye zombie.
 
-## Almanach und Menü
+## Almanac and menu
 
-Die Bibliothek klont native Zombie-Karten, Zombie-Detailansicht, Zombie-Hintergründe, Buttons und Schriftarten unter einem inaktiven Elternobjekt. Native Datenbinder und Übergangsanimationen werden vor Aktivierung entfernt. Fünf Spalten, Seitennavigation, Scrollen, Controller-Navigation, Sprachwechsel und Wechsel zwischen Mod-Tabs werden unterstützt. Native Index- und Schließen-Aktionen bleiben erhalten. Profilfreischaltungen werden nicht geändert.
+The library clones native zombie maps, zombie detail view, zombie backgrounds, buttons and fonts under an inactive parent object. Native data binders and transition animations are removed before activation. Five columns, page navigation, scrolling, controller navigation, language switching and mod tab switching are supported. Native index and close actions are preserved. Profile activations will not be changed.
 
-`Portrait` und optional `DuckPortrait` liefern geliehene Sprites; die Mod besitzt deren Lebensdauer. Ohne eigenes `DuckPortrait` ergänzt die Bibliothek die native Ente im normalen Porträt. Bei asynchron geladenen Sprites darf der Callback zunächst `null` liefern. Die Ansicht fragt das Porträt erneut ab.
+`Portrait` and optionally `DuckPortrait` provide borrowed sprites; the mod has its lifespan. Without its own `DuckPortrait`, the library complements the native duck in the normal portrait. For sprites loaded asynchronously, the callback may initially deliver `null`. The view queries the portrait again.
 
-Fusion 19.1.0 verwendet die Library für Hypnoerbsen-Zombie und Augenzombie sowie deren Gummientenvarianten. Acht zusätzliche native Entenvarianten stehen ebenfalls in Fusions Zombie-Tab. Die bisherigen Marker `-430153` und `-521012` bleiben erhalten. Spezialfähigkeiten, Zufallsersetzung, Treffer und Beute bleiben in Fusion; Registrierung, Sounds, Enten und Almanach gehören der Library.
+Fusion 19.1.0 uses the library for Hypnopea Zombie and Eye Zombie and their rubber duck variants. Eight additional native duck variants are also in Fusion's Zombie tab. The previous markers `-430153` and `-521012` will be retained. Special abilities, random substitutions, hits and loot remain in Fusion; Registration, sounds, ducks and almanac belong to the library.
 
-## Bauen und installieren
+## Building and installing
 
 ```sh
 rtk proxy /home/kevin/modding/pvzreplanted/.tools/dotnet/dotnet build /home/kevin/modding/pvzreplanted/fusion-mod/FusionMod.csproj -c Release
@@ -108,22 +108,22 @@ rtk proxy /home/kevin/modding/pvzreplanted/.tools/dotnet/dotnet build /home/kevi
 rtk proxy python3 /home/kevin/modding/pvzreplanted/zombie-library/tools/install.py
 ```
 
-Der Installer baut und installiert `ZombieLibrary.dll`, `PlantLibrary.dll` und `FusionMod.dll` gemeinsam. Er verwendet dieselbe Releasesperre wie Fusion, sichert alte DLLs, erkennt zwischenzeitliche Änderungen und ersetzt Dateien atomar. Bei einem Fehler während der DLL-Installation stellt er bereits ersetzte DLLs wieder her. `backups/<Zeitstempel>/installation.json` dokumentiert alte und neue SHA-256-Hashes. Spiel und Testprogramme werden nicht gestartet.
+The installer builds and installs `ZombieLibrary.dll`, `PlantLibrary.dll` and `FusionMod.dll` together. It uses the same release lock as Fusion, backs up old DLLs, detects interim changes and replaces files atomically. In case of an error during DLL installation, it restores DLLs that have already been replaced. `backups/<Zeitstempel>/installation.json` documents old and new SHA-256 hashes. Game and test programs will not start.
 
-Das [Beispiel](example-mod/README.md) bleibt standardmäßig außerhalb des Spielordners. `--example` installiert es zusätzlich. `--no-build` installiert bereits gebaute Release-Dateien.
+The [Example](example-mod/README.md) stays outside the game folder by default. `--example` installs it additionally. `--no-build` installs already built release files.
 
-Zum Rückbau das Spiel schließen und alle drei DLLs gemeinsam aus dem dokumentierten Backup wiederherstellen. Eine Datei mit vorherigem Hash `null` war zuvor nicht installiert. Diese Datei beim Rückbau entfernen. Die Bibliothek darf nicht entfernt werden, solange eine abhängige Mod installiert ist.
+To restore, close the game and restore all three DLLs together from the documented backup. A file with previous hash `null` was not previously installed. Remove this file when dismantling. The library may not be removed while a dependent mod is installed.
 
-## Offene manuelle Prüfung
+## Open manual review
 
-Builds prüfen Kompilierung gegen installierte IL2CPP-Referenzen. Spiel und Tests wurden auf Benutzerwunsch nicht ausgeführt. Manuell zu prüfen: Mod-Menü, Mod-Tabs, native Zombie-Assets, alle Enten auf Land und im Pool, Controller-Navigation, Sprachwechsel, Pause, Hypno-Beschwörung, Augenzombie-Fähigkeiten, Soundhäufigkeit sowie Speichern und Fortsetzen bestehender Varianten.
+Builds check compilation against installed IL2CPP references. Game and tests were not running at user request. To check manually: mod menu, mod tabs, native zombie assets, all ducks on land and in the pool, controller navigation, voice switching, pause, hypno-summon, eye zombie abilities, sound frequency, and saving and resuming existing variants.
 
-Vorbereitete Offline-Suite, ausschließlich manuell ausführen:
+Prepared offline suite, run manually only:
 
 ```sh
 rtk proxy /home/kevin/modding/pvzreplanted/.tools/dotnet/dotnet run --project /home/kevin/modding/pvzreplanted/zombie-library/tests/RegistryTests.csproj -c Release
 ```
 
-Die Suite prüft echte Registrierungslogik mit Daten-Doubles ohne Spielassemblies. Sie deckt Identitätskonflikte, Initialisierung, Sounds, Speichermarker, Pause, Reset, fehlerhafte Spawns und native Entenregistrierung ab. Fusions vorhandene Hypno-, Augenzombie- und Pool-Suites sind an die neue Abhängigkeitsgrenze angepasst.
+The suite tests real registration logic with data doubles without game assemblies. It covers identity conflicts, initialization, sounds, memory markers, pause, reset, bad spawns, and native duck registration. Fusion's existing Hypno, Eye Zombie and Pool suites are adapted to the new dependency limit.
 
-Grafikherkunft: `assets/sources.json`; native Zombie-Layoutdaten: `assets/native-almanac-layout.json`. `tools/export_assets.py` übernimmt bereits vorhandene native Exporte ohne Spielstart. Gemeinsame native UI-Sanitisierung und Sprachabfrage liegen als eingebundene Quellen unter `../shared/`; zwischen Zombie Library und Plant Library besteht keine Laufzeitabhängigkeit.
+Graphics source: `assets/sources.json`; Native Zombie layout data: `assets/native-almanac-layout.json`. `tools/export_assets.py` takes over existing native exports without starting the game. Common native UI sanitization and voice query are included sources under `../shared/`; There is no runtime dependency between Zombie Library and Plant Library.

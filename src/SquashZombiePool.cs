@@ -60,12 +60,30 @@ internal static class SquashZombiePoolPatch
     {
         if (!__state.Changed || __instance.DataID != __state.Id) return;
         __instance.mZombieType = __state.Type;
-        // Water entry borrows Normal only for the native allowlist. Its skin
-        // transition removes held-shield attachments; restore the real owner's
-        // shield and arm layers after restoring the actual zombie type.
+        // The shared native swim clip explicitly removes the held shield and
+        // its arms. Select the owner's intact walk clip after the allowlist
+        // scope restores its real type; native water clipping hides the legs.
         if (__instance.mInPool != __state.InPool && !__instance.mDead && __instance.mController != null
             && __instance.mShieldHealth > 0 && __state.Type is ZombieType.Door or ZombieType.TrashCan)
-            __instance.AttachShield();
+            __instance.StartWalkAnim(0);
+    }
+}
+
+// Door/TrashCan share the basic rig, but its swim clip has no shield pose.
+// Borrow only the animation selector's water flag, never movement or terrain.
+[HarmonyPatch(typeof(Zombie), nameof(Zombie.StartWalkAnim))]
+internal static class PoolShieldWalkPatch
+{
+    private static void Prefix(Zombie __instance, out (uint Id, bool InPool, bool Changed) __state)
+    {
+        bool changed = __instance.mInPool && __instance.mShieldHealth > 0
+            && __instance.mZombieType is ZombieType.Door or ZombieType.TrashCan;
+        __state = (__instance.DataID, __instance.mInPool, changed);
+        if (changed) __instance.mInPool = false;
+    }
+    private static void Finalizer(Zombie __instance, (uint Id, bool InPool, bool Changed) __state)
+    {
+        if (__state.Changed && __instance.DataID == __state.Id) __instance.mInPool = __state.InPool;
     }
 }
 

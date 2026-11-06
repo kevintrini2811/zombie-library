@@ -1,6 +1,6 @@
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(ZombieLibrary.LibraryMod), "Zombie Library", "1.3.0", "Kevin / Codex")]
+[assembly: MelonInfo(typeof(ZombieLibrary.LibraryMod), "Zombie Library", "1.3.1", "Kevin / Codex")]
 [assembly: MelonGame("PopCap Games", "PvZ Replanted")]
 [assembly: MelonOptionalDependencies("DebugMod")]
 [assembly: MelonAdditionalDependencies("BloomEngine")]

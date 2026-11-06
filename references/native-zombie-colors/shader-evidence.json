@@ -1,0 +1,73 @@
+{
+  "bundle": "/mnt/FastGaming1/SteamLibrary/steamapps/common/PVZ Replanted/Replanted_Data/StreamingAssets/aa/StandaloneWindows64/shaders_assets_all_f601103ee6b6617c74b98469139d6041.bundle",
+  "sha256": "5ef28a654979a3078be6115f6454db7f2cc12284831dc93a187b0d279306dc36",
+  "shader": "Universal Render Pipeline/Spine/SkeletonAdditive",
+  "parameterRecords": [
+    {
+      "name": "_HighContrastColor",
+      "blobOffset": 14196,
+      "record": [
+        0,
+        1,
+        4,
+        0,
+        0,
+        2208
+      ],
+      "constantBufferOffset": 2208
+    },
+    {
+      "name": "_EnableExtraAdditiveColor",
+      "blobOffset": 14244,
+      "record": [
+        2,
+        1,
+        1,
+        0,
+        0,
+        2068
+      ],
+      "constantBufferOffset": 2068
+    },
+    {
+      "name": "_EnableExtraOverlayColor",
+      "blobOffset": 14300,
+      "record": [
+        2,
+        1,
+        1,
+        0,
+        0,
+        2072
+      ],
+      "constantBufferOffset": 2072
+    },
+    {
+      "name": "_ExtraAdditiveColor",
+      "blobOffset": 14392,
+      "record": [
+        0,
+        1,
+        4,
+        0,
+        0,
+        2096
+      ],
+      "constantBufferOffset": 2096
+    },
+    {
+      "name": "_ExtraOverlayColor",
+      "blobOffset": 14440,
+      "record": [
+        0,
+        1,
+        4,
+        0,
+        0,
+        2112
+      ],
+      "constantBufferOffset": 2112
+    }
+  ],
+  "commonOverrideOffset": 2128
+}

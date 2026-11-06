@@ -1,0 +1,76 @@
+//////////////////////////////////////////
+//
+// NOTE: This is *not* a valid shader file
+//
+///////////////////////////////////////////
+Shader "Universal Render Pipeline/Spine/SkeletonAdditive" {
+Properties {
+
+_Cutoff ("Shadow alpha cutoff", Range(0, 1)) = 0.10000000149011612
+
+_MainTex ("Main Texture", 2D) = "black" { }
+
+[Toggle(_STRAIGHT_ALPHA_INPUT)] _StraightAlphaInput ("Straight Alpha Texture", Float) = 0.0
+
+[Toggle(_ZWRITE)] _ZWrite ("Depth Write", Float) = 0.0
+
+[MaterialToggle(_TINT_BLACK_ON)] _TintBlack ("Tint Black", Float) = 0.0
+
+[Toggle(_FLAT_MONO)] _FLAT_MONO ("Flat Monochrome", Float) = 0.0
+
+[Toggle(_GRAYSCALE_ON)] _GrayscaleOn ("Grayscale Filter", Float) = 0.0
+
+_GrayscaleColor ("Grayscale Color", Color) = (0.5,0.65,0.5,1)
+
+_GrayscaleDarkener ("Grayscale Darkener", Color) = (0.7,0.7,0.7,1)
+
+_Color ("    Light Color", Color) = (1,1,1,1)
+
+_Black ("    Dark Color", Color) = (0,0,0,0)
+
+_ExtraAdditiveColor ("Additive Color", Color) = (0,0,0,1)
+
+_ExtraOverlayColor ("Overlay Color", Color) = (0,0,0,1)
+
+_OverrideColor ("Override Color", Color) = (1,1,1,1)
+
+_ClipRect ("Screen Space Clip Rect", Vector) = (0,0,0,0)
+
+_HighContrastColor ("High Contrast Color", Color) = (1,1,1,1)
+
+_HighContrastStrength ("High Contrast Strength", Float) = 0.0
+
+_IgnoreColorOverride ("Ignore Override", Float) = 0.0
+
+_EnableExtraAdditiveColor ("Enable Additive", Float) = 0.0
+
+_EnableExtraOverlayColor ("Enable Overlay", Float) = 0.0
+
+_EnableClipRect ("Enable Clip Rect", Float) = 0.0
+
+_StencilRef ("Stencil Reference", Float) = 1.0
+
+[Enum(UnityEngine.Rendering.CompareFunction)] _StencilComp ("Stencil Comparison", Float) = 8.0
+
+}
+SubShader {
+ LOD 100
+ Tags { "IGNOREPROJECTOR" = "true" "QUEUE" = "Transparent" "RenderPipeline" = "UniversalPipeline" "RenderType" = "Transparent" }
+ Pass {
+ Name "Forward"
+  LOD 100
+  Tags { "IGNOREPROJECTOR" = "true" "LIGHTMODE" = "UniversalForward" "QUEUE" = "Transparent" "RenderPipeline" = "UniversalPipeline" "RenderType" = "Transparent" }
+ ZWrite Off
+ Cull Off
+  GpuProgramID 53431
+}
+ Pass {
+ Name "DepthOnly"
+  LOD 100
+  Tags { "IGNOREPROJECTOR" = "true" "LIGHTMODE" = "DepthOnly" "QUEUE" = "Transparent" "RenderPipeline" = "UniversalPipeline" "RenderType" = "Transparent" }
+ Cull Off
+  GpuProgramID 148291
+}
+}
+Fall back "Universal Render Pipeline/Unlit"
+}

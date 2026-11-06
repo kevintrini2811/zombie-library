@@ -1,4 +1,6 @@
-# Zombie Library 1.3.0
+# Zombie Library 1.3.1
+
+Version 1.3.1 uses native character colour state for imported zombie sprites, including cold blue, armour and pool ducks. Zombie Library owns the shared colour adapter; source alpha and pool clipping remain intact.
 
 
 Version 1.3.0 owns registration and artwork for the additional native duck variants formerly registered by Plant Fusion. Native pool behavior works without Fusion. Existing sightings under the old Fusion catalog remain readable. `DebugCatalog.SelectionEntries` excludes duck-only cards while preserving the existing full catalog export. Register walking Normal, TrafficCone or Pail variants through their unused negative GraveX marker; native armor remains intact.

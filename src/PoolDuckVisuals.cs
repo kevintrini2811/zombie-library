@@ -20,6 +20,7 @@ public static class PoolDuckVisuals
         private readonly Il2CppSpine.Slot slot;
         private readonly Il2CppSpine.RegionAttachment? nativeDuck;
         private readonly PoolSpriteClip clip = new();
+        private readonly MaterialPropertyBlock colors = new();
         private readonly Il2CppInterop.Runtime.InteropTypes.Arrays.Il2CppStructArray<float> vertices;
         private readonly Vector2 center, size;
         private PoolArmLayers? arms;
@@ -60,7 +61,7 @@ public static class PoolDuckVisuals
                 if (!float.IsFinite(size.x) || !float.IsFinite(size.y) || size.x <= 0 || size.y <= 0)
                     throw new InvalidDataException("Pool torso has no finite dimensions.");
             }
-            var spriteMaterial = Material(zombie.mBoard);
+            var spriteMaterial = Material(zombie);
             var go = new GameObject("Fusion-NativeDuckTube") { layer = skin.gameObject.layer };
             go.transform.SetParent(skin.transform, false);
             Renderer = go.AddComponent<SpriteRenderer>();
@@ -130,8 +131,7 @@ public static class PoolDuckVisuals
                 arms?.Update(body);
             }
             height = Renderer.transform.TransformVector(new Vector3(0, Renderer.sprite.bounds.size.y, 0)).magnitude;
-            Renderer.color = Zombie.mIceTrapCounter > 0 || Zombie.mChilledCounter > 0
-                ? new Color(.65f, .8f, 1, 1) : Color.white;
+            ZombieSpriteColor.From(Zombie).Apply(Renderer, Color.white, colors);
             if (Waterline(Zombie, body!.transform, out var water, out var up))
             {
                 // A synthetic tube floats on the same water plane as the body
@@ -344,20 +344,11 @@ public static class PoolDuckVisuals
     private static Texture2D? texture;
     private static Material? material;
 
-    private static Material Material(Board board)
+    private static Material Material(Zombie zombie)
     {
         if (material != null && material) return material;
-        var preview = board.mApp.CreatePreviewController(SeedType.Peashooter, board.mCursorObject);
-        try
-        {
-            preview.HidePreview();
-            var source = preview.m_previewDrawer?.m_previewSprite?.sharedMaterial
-                ?? throw new InvalidOperationException("Native pool sprite material is unavailable.");
-            material = new Material(source) { name = "Fusion-PoolDuck", hideFlags = HideFlags.HideAndDontSave };
-            material.SetColor("_Color", Color.white);
-            return material;
-        }
-        finally { if (preview != null && preview) preview.Die(); }
+        material = ZombieSpriteColor.CreateMaterial(zombie);
+        return material;
     }
 
     private static Sprite Sprite()

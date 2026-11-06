@@ -1,0 +1,2688 @@
+{
+  "date": "2026-11-06",
+  "versions": {
+    "ZombieLibrary": "1.3.1",
+    "FusionMod": "22.2.3"
+  },
+  "actors": [
+    {
+      "id": 11,
+      "col": 2,
+      "row": 0,
+      "kind": "native"
+    },
+    {
+      "id": 12,
+      "col": 4,
+      "row": 0,
+      "kind": "Augenzombie"
+    },
+    {
+      "id": 13,
+      "col": 6,
+      "row": 0,
+      "kind": "Pylonen-Augenzombie"
+    },
+    {
+      "id": 14,
+      "col": 8,
+      "row": 0,
+      "kind": "Eimer-Augenzombie"
+    },
+    {
+      "id": 15,
+      "col": 2,
+      "row": 2,
+      "kind": "native"
+    },
+    {
+      "id": 16,
+      "col": 4,
+      "row": 2,
+      "kind": "Augenzombie"
+    },
+    {
+      "id": 17,
+      "col": 6,
+      "row": 2,
+      "kind": "Pylonen-Augenzombie"
+    },
+    {
+      "id": 18,
+      "col": 8,
+      "row": 2,
+      "kind": "Eimer-Augenzombie"
+    }
+  ],
+  "stages": [
+    {
+      "name": "baseline",
+      "items": [
+        {
+          "state": {
+            "DataID": 11,
+            "mZombieType": "Normal",
+            "mGraveX": 0,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": false,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "Offset",
+              "sprite": "plantshadow",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "0",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "1",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 12,
+            "mZombieType": "Normal",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": false,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 13,
+            "mZombieType": "TrafficCone",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": false,
+            "mHelmHealth": 370,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "EyesArmor.cone",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 14,
+            "mZombieType": "Pail",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": false,
+            "mHelmHealth": 1100,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "EyesArmor.bucket",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 15,
+            "mZombieType": "Normal",
+            "mGraveX": 0,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": true,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "0",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "1",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 16,
+            "mZombieType": "Normal",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": true,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 17,
+            "mZombieType": "TrafficCone",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": true,
+            "mHelmHealth": 370,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 18,
+            "mZombieType": "Pail",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": true,
+            "mHelmHealth": 1100,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cold",
+      "items": [
+        {
+          "state": {
+            "DataID": 11,
+            "mZombieType": "Normal",
+            "mGraveX": 0,
+            "mChilledCounter": 1982,
+            "mIceTrapCounter": 99982,
+            "mInPool": false,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "Offset",
+              "sprite": "plantshadow",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "0",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "1",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "IceTrapBack",
+              "sprite": "SPR_Icetrap2",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "IceTrapFront",
+              "sprite": "SPR_Icetrap",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 12,
+            "mZombieType": "Normal",
+            "mGraveX": -521012,
+            "mChilledCounter": 1982,
+            "mIceTrapCounter": 99982,
+            "mInPool": false,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "IceTrapBack",
+              "sprite": "SPR_Icetrap2",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "IceTrapFront",
+              "sprite": "SPR_Icetrap",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 13,
+            "mZombieType": "TrafficCone",
+            "mGraveX": -521012,
+            "mChilledCounter": 1982,
+            "mIceTrapCounter": 99982,
+            "mInPool": false,
+            "mHelmHealth": 370,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "EyesArmor.cone",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "IceTrapBack",
+              "sprite": "SPR_Icetrap2",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "IceTrapFront",
+              "sprite": "SPR_Icetrap",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 14,
+            "mZombieType": "Pail",
+            "mGraveX": -521012,
+            "mChilledCounter": 1982,
+            "mIceTrapCounter": 99982,
+            "mInPool": false,
+            "mHelmHealth": 1100,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "EyesArmor.bucket",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "IceTrapBack",
+              "sprite": "SPR_Icetrap2",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "IceTrapFront",
+              "sprite": "SPR_Icetrap",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 15,
+            "mZombieType": "Normal",
+            "mGraveX": 0,
+            "mChilledCounter": 1982,
+            "mIceTrapCounter": 99982,
+            "mInPool": true,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "0",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "1",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 16,
+            "mZombieType": "Normal",
+            "mGraveX": -521012,
+            "mChilledCounter": 1982,
+            "mIceTrapCounter": 99982,
+            "mInPool": true,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 17,
+            "mZombieType": "TrafficCone",
+            "mGraveX": -521012,
+            "mChilledCounter": 1982,
+            "mIceTrapCounter": 99982,
+            "mInPool": true,
+            "mHelmHealth": 370,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 18,
+            "mZombieType": "Pail",
+            "mGraveX": -521012,
+            "mChilledCounter": 1982,
+            "mIceTrapCounter": 99982,
+            "mInPool": true,
+            "mHelmHealth": 1100,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "thawed",
+      "items": [
+        {
+          "state": {
+            "DataID": 11,
+            "mZombieType": "Normal",
+            "mGraveX": 0,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": false,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "Offset",
+              "sprite": "plantshadow",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "0",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "1",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 12,
+            "mZombieType": "Normal",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": false,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 13,
+            "mZombieType": "TrafficCone",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": false,
+            "mHelmHealth": 370,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "EyesArmor.cone",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 14,
+            "mZombieType": "Pail",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": false,
+            "mHelmHealth": 1100,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "EyesArmor.bucket",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Shadow-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 15,
+            "mZombieType": "Normal",
+            "mGraveX": 0,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": true,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "0",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "1",
+              "sprite": null,
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 16,
+            "mZombieType": "Normal",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": true,
+            "mHelmHealth": 0,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 17,
+            "mZombieType": "TrafficCone",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": true,
+            "mHelmHealth": 370,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        },
+        {
+          "state": {
+            "DataID": 18,
+            "mZombieType": "Pail",
+            "mGraveX": -521012,
+            "mChilledCounter": 0,
+            "mIceTrapCounter": 0,
+            "mInPool": true,
+            "mHelmHealth": 1100,
+            "mHasHead": true,
+            "mZombiePhase": "ZombieNormal"
+          },
+          "visibleRenderers": [
+            {
+              "name": "anim_innerarm3-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_innerarm1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_neck-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head1-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "EyesArmor",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_innerleg_foot-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerleg_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_body-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_tie-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_head2-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "anim_hair-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_hand-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_upper-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Zombie_outerarm_lower-sprite",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            },
+            {
+              "name": "Fusion-NativeDuckTube",
+              "sprite": "",
+              "enabled": true,
+              "active": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "screenshots": {
+    "cold.png": "b346e8d90b8b22aba805ec00e5e52b54e2916b8fe7c2dac6aae16b2d5f5b90f2",
+    "thawed.png": "975393f9688a526c0abd6d8ffa6f763de0a0fa686d410e1499823a7bbdb59dbf"
+  },
+  "installedSHA256": {
+    "ZombieLibrary.dll": "8bb511d31790fa381541a7640e8ded041572ac2724d3fb6ee35037ce01da2c4e",
+    "FusionMod.dll": "10e99a1f36a4f366c8aa8c1f4f00d806f2defdd91ed2d55e92ad5c2f4fbae320"
+  },
+  "gameExited": true
+}

@@ -9,6 +9,12 @@ internal static class ZombiePoolRules
 {
     internal static bool Extra(ZombieType type) => Zombies.HasPoolType(type);
     internal static bool Duck(Zombie zombie) => Zombies.HasNativeDuck(zombie.mZombieType) || Zombies.Find(zombie)?.RubberDuck == true;
+    internal static bool WalkInPool(Zombie zombie)
+    {
+        if (zombie.mShieldHealth > 0 && zombie.mZombieType is ZombieType.Door or ZombieType.TrashCan) return true;
+        var skeleton = zombie.mController?.AnimationController?.SkeletonAnimation?.skeleton;
+        return skeleton != null && skeleton.Data.FindAnimation("swim") == null;
+    }
 }
 
 [HarmonyPatch(typeof(Board), nameof(Board.RowCanHaveZombieType))]
@@ -64,20 +70,20 @@ internal static class SquashZombiePoolPatch
         // its arms. Select the owner's intact walk clip after the allowlist
         // scope restores its real type; native water clipping hides the legs.
         if (__instance.mInPool != __state.InPool && !__instance.mDead && __instance.mController != null
-            && __instance.mShieldHealth > 0 && __state.Type is ZombieType.Door or ZombieType.TrashCan)
+            && ZombiePoolRules.WalkInPool(__instance))
             __instance.StartWalkAnim(0);
     }
 }
 
-// Door/TrashCan share the basic rig, but its swim clip has no shield pose.
+// Door/TrashCan lose shields in the swim clip. Other supported rigs, such as
+// Pogo, have no swim clip at all. Their existing walk clip owns the body pose.
 // Borrow only the animation selector's water flag, never movement or terrain.
 [HarmonyPatch(typeof(Zombie), nameof(Zombie.StartWalkAnim))]
-internal static class PoolShieldWalkPatch
+internal static class PoolWalkAnimationPatch
 {
     private static void Prefix(Zombie __instance, out (uint Id, bool InPool, bool Changed) __state)
     {
-        bool changed = __instance.mInPool && __instance.mShieldHealth > 0
-            && __instance.mZombieType is ZombieType.Door or ZombieType.TrashCan;
+        bool changed = __instance.mInPool && ZombiePoolRules.WalkInPool(__instance);
         __state = (__instance.DataID, __instance.mInPool, changed);
         if (changed) __instance.mInPool = false;
     }

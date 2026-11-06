@@ -31,6 +31,8 @@ def export():
         native(name).save(ROOT / "assets" / file)
 
     output = FUSION / "assets/zombie-almanac"
+    native_output = ROOT / "assets/duck-cards"
+    native_output.mkdir(exist_ok=True)
     output.mkdir(exist_ok=True)
     background = native("SPR_Almanac_zombieEntries_background").resize((262, 262), Image.Resampling.LANCZOS)
     border = native("SPR_Almanac_zombieEntries_border").resize((262, 262), Image.Resampling.LANCZOS)
@@ -47,6 +49,8 @@ def export():
     # have no native almanac thumbnail. Frame their upper bodies consistently.
     for key, source in {
         "eyes": FUSION / "assets/debug-cards/eyes-zombie.png",
+        "eyes-cone": FUSION / "assets/eyes-armor/eyes-cone.png",
+        "eyes-bucket": FUSION / "assets/eyes-armor/eyes-bucket.png",
         "34": portraits / "34.png",
         "hypno": FUSION / "assets/hypno-zombie.png", "30": portraits / "30.png", "32": portraits / "32.png",
     }.items():
@@ -73,14 +77,15 @@ def export():
     duck = Image.open(ROOT / "assets/duck.png").convert("RGBA")
     duck.thumbnail((156, 94), Image.Resampling.LANCZOS)
     for key, card in cards.items():
-        card.save(output / (key + ".png"))
+        destination = native_output if key.isdigit() else output
+        card.save(destination / (key + ".png"))
         swimming = card.copy()
         swimming.alpha_composite(duck, ((262 - duck.width) // 2, 242 - duck.height))
-        swimming.save(output / (key + "-duck.png"))
+        swimming.save(destination / (key + "-duck.png"))
     proof = {"sprites": sources, "game_started": False,
              "bundles": {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in paths},
              "outputs": {str(path): hashlib.sha256(path.read_bytes()).hexdigest()
-                         for path in list(output.glob("*.png")) + list((ROOT / "assets").glob("zombie-card-*.png"))}}
+                         for path in list(output.glob("*.png")) + list(native_output.glob("*.png")) + list((ROOT / "assets").glob("zombie-card-*.png"))}}
     (ROOT / "assets/almanac-sources.json").write_text(json.dumps(proof, indent=2) + "\n")
     print(f"Exported 3 native card layers and {len(cards) * 2} Fusion thumbnails.")
 

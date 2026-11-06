@@ -41,3 +41,16 @@ Check(duck.DuckOnly && duck.RubberDuck && Zombies.HasPoolType(ZombieType.Footbal
 Reject<ArgumentException>(() => Zombies.Apply(duck, new Zombie { mZombieType = ZombieType.Football }));
 Reject<ArgumentException>(() => Zombies.RegisterNativeDuck(ZombieType.Boss));
 Console.WriteLine("Registry contracts passed.");
+
+foreach (var type in new[] { ZombieType.TrafficCone, ZombieType.Pail }) {
+ var armored = Zombies.RegisterZombie(mod, "armored-"+type, new(type, MarkerField.GraveX, -200), text, text, rubberDuck: true);
+ var actor = new Zombie { mZombieType=type };
+ Zombies.Apply(armored,actor);
+ Check(Zombies.Find(actor)==armored && actor.PoolChecks==1,"Armored identity survives native type and enables pool entry.");
+}
+var emerging = new Zombie { mZombiePhase=ZombiePhase.RisingFromGrave };
+emerging.DrawPosition.BodyY=100;
+var artwork = new UnityEngine.Transform();
+Zombies.ApplyBodyDisplacement(emerging,artwork);
+Check(Math.Abs(artwork.position.y+282)<.001f,"Grave rise transfers native body displacement to imported artwork.");
+Check(Zombies.BodyClipPlane(emerging,artwork,new(),out _,out _),"Grave rise enables ground clipping.");

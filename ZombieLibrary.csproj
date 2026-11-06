@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks><AssemblyName>ZombieLibrary</AssemblyName><Version>1.2.1</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks><AssemblyName>ZombieLibrary</AssemblyName><Version>1.3.0</Version>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GameDir Condition="'$(GameDir)' == ''">/mnt/FastGaming1/SteamLibrary/steamapps/common/PVZ Replanted</GameDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="src/**/*.cs" />
+    <EmbeddedResource Include="assets/duck-cards/*" LogicalName="ZombieLibrary.DuckCards.%(Filename)%(Extension)" />
     <Compile Include="../shared/NativeUi.cs" Link="Shared/NativeUi.cs" />
     <Compile Include="../shared/NativeLocalization.cs" Link="Shared/NativeLocalization.cs" />
     <EmbeddedResource Remove="example-mod/**" />

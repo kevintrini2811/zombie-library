@@ -9,8 +9,15 @@ internal static class DebugCatalog
     internal static IEnumerable<(ZombieType NativeType, string Name, Func<Sprite?> Portrait,
         Func<Sprite?> Thumbnail, Func<Board, int, Zombie?> Spawn)> Entries()
     {
+        return Entries(false);
+    }
+    internal static IEnumerable<(ZombieType NativeType, string Name, Func<Sprite?> Portrait,
+        Func<Sprite?> Thumbnail, Func<Board, int, Zombie?> Spawn)> SelectionEntries() => Entries(true);
+    private static IEnumerable<(ZombieType NativeType, string Name, Func<Sprite?> Portrait,
+        Func<Sprite?> Thumbnail, Func<Board, int, Zombie?> Spawn)> Entries(bool selection)
+    {
         bool german = NativeLocalization.German;
-        return Zombies.All.Select(definition => (definition.Identity.NativeType,
+        return Zombies.All.Where(definition => !selection || !definition.DuckOnly).Select(definition => (definition.Identity.NativeType,
             german ? definition.German.Name : definition.English.Name,
             (Func<Sprite?>)(() => definition.Portrait?.Invoke(german)),
             (Func<Sprite?>)(() => definition.Thumbnail?.Invoke(german, definition.DuckOnly)

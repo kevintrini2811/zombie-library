@@ -89,9 +89,9 @@ public static class Zombies
         ArgumentNullException.ThrowIfNull(english); ArgumentNullException.ThrowIfNull(german);
         // Normal does not consume grave coordinates while walking. PeaHead
         // does not consume the dancer/imp summon counter. Never invent enum IDs.
-        if (identity.Marker >= 0 || !(identity.NativeType == ZombieType.Normal && identity.Field == MarkerField.GraveX
+        if (identity.Marker >= 0 || !(identity.NativeType is (ZombieType.Normal or ZombieType.TrafficCone or ZombieType.Pail) && identity.Field == MarkerField.GraveX
             || identity.NativeType == ZombieType.PeaHead && identity.Field == MarkerField.SummonCounter))
-            throw new ArgumentException("Use a negative marker in Normal.GraveX or PeaHead.SummonCounter.");
+            throw new ArgumentException("Use a negative marker in Normal/TrafficCone/Pail.GraveX or PeaHead.SummonCounter.");
         if (definitions.Any(item => item.Identity == identity || item.Mod == mod && item.Id == id))
             throw new InvalidOperationException($"Duplicate zombie identity or ID: {mod.Id}:{id}");
         var definition = new ZombieDefinition(mod, id, identity, english, german, rubberDuck);
@@ -190,6 +190,27 @@ public static class Zombies
         if (zombie.mBoard == null || zombie.mBoard.mPaused) return;
         Find(zombie)?.Tick?.Invoke(zombie);
     }
+    /// <summary>Transfer the native body displacement to imported artwork after
+    /// anchoring its ground node. Includes grave rises and pool entry/exit.
+    /// Call once after resetting the ground anchor each frame; never on native rigs.</summary>
+    public static void ApplyBodyDisplacement(Zombie zombie, Transform artwork)
+    {
+        if (zombie.mZombiePhase == ZombiePhase.RisingFromGrave || zombie.mInPool
+            || zombie.mZombieHeight == ZombieHeight.OutOfPool)
+            artwork.position -= artwork.TransformVector(Vector3.up).normalized
+                * (zombie.GetDrawPos().BodyY * 2.82f);
+    }
+
+    /// <summary>Shared clipping plane for imported bodies. Grave rises use the
+    /// native ground anchor, swimming uses the library's native waterline.</summary>
+    public static bool BodyClipPlane(Zombie zombie, Transform artwork, Vector3 ground, out Vector3 plane, out Vector3 up)
+    {
+        if (PoolDuckVisuals.Waterline(zombie, artwork, out plane, out up)) return true;
+        plane = ground;
+        up = artwork.TransformVector(Vector3.up).normalized;
+        return zombie.mZombiePhase == ZombiePhase.RisingFromGrave;
+    }
+
     internal static void RefreshVisuals()
     { foreach (var definition in definitions) definition.RefreshVisuals?.Invoke(); }
     internal static void Reset(Zombie zombie)

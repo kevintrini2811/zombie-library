@@ -1,4 +1,11 @@
-# Zombie Library 1.2.1
+# Zombie Library 1.3.0
+
+
+Version 1.3.0 owns registration and artwork for the additional native duck variants formerly registered by Plant Fusion. Native pool behavior works without Fusion. Existing sightings under the old Fusion catalog remain readable. `DebugCatalog.SelectionEntries` excludes duck-only cards while preserving the existing full catalog export. Register walking Normal, TrafficCone or Pail variants through their unused negative GraveX marker; native armor remains intact.
+
+Imported zombie artwork calls `Zombies.ApplyBodyDisplacement` after anchoring its ground node, then `Zombies.BodyClipPlane` with that native ground position. These library helpers transfer native grave-rise and pool displacement and provide a shared clipping plane. Native zombie phases, altitude, duration and animation clocks remain unchanged.
+
+Custom `PlacePoolDuck` callbacks own tube geometry; registration does not require an active native torso attachment for those imported rigs. Destroyed tube renderers are recreated after controller or imported-artwork reuse.
 
 ## Dependencies
 
@@ -8,9 +15,11 @@
 - Building: .NET SDK with `net6.0` support and the game/MelonLoader reference assemblies declared in `ZombieLibrary.csproj`.
 
 
-## Pool graphics (1.2.1)
+## Pool graphics (1.3.0)
 
 Synthetic ducks are based on the largest actual body attachment. Already visible native ducks are reused. Empty arm slots do not impose a limit on arm order. Door and TrashCan retain their native walking clip with the shield intact because the shared swimming clip hides the shield and arms. Native water movement and waterline remain responsible.
+
+Supported rigs without a native `swim` animation, including Pogo, retain their native walk animation in water. The library borrows the animation selector's pool flag only during that call; swimming state, movement and water clipping remain native.
 
 ## Additional pool variants and sighting protection (1.2.0)
 

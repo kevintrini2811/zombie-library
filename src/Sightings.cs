@@ -40,7 +40,9 @@ internal static class Sightings
 
     private static bool Contains(string key)
     { Load(); return Profile is { Length: > 0 } profile && seen!.Contains(profile + "/" + key); }
-    internal static bool Contains(ZombieDefinition definition, bool duck) => Contains(Key(definition, duck));
+    internal static bool Contains(ZombieDefinition definition, bool duck) => Contains(Key(definition, duck))
+        || definition.DuckOnly && definition.Mod.Id == "native-ducks"
+            && Contains("mod/fusion/" + definition.Id + (duck ? "/duck" : "/land"));
     internal static bool Contains(ZombieType type) => Contains(NativeKey(type));
 
     private static void Add(string key)

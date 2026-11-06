@@ -31,7 +31,7 @@ public static class PoolDuckVisuals
             this.skin = skin; this.slot = slot; nativeDuck = duck;
             int count = slot.Attachment?.TryCast<Il2CppSpine.MeshAttachment>()?.WorldVerticesLength ?? 8;
             vertices = new(Math.Max(count, 8));
-            if (duck == null)
+            if (duck == null && Zombies.Find(zombie)?.PlacePoolDuck == null)
             {
                 if (slot.Attachment?.TryCast<Il2CppSpine.RegionAttachment>() is { } region)
                 { count = 8; region.ComputeWorldVertices(slot, vertices, 0, 2); }
@@ -387,6 +387,7 @@ public static class PoolDuckVisuals
             var skeleton = skin?.skeleton;
             if (skin == null || skeleton == null) continue;
             var duckSlot = skeleton.FindSlot("Zombie_duckytube");
+            bool customPlacement = Zombies.Find(zombie)?.PlacePoolDuck != null;
             if (duckSlot?.Attachment != null && duckSlot.A > 0
                 && duckSlot.Attachment.Name.Contains("duckytube", StringComparison.OrdinalIgnoreCase)
                 && Zombies.Find(zombie)?.PlacePoolDuck == null)
@@ -396,7 +397,7 @@ public static class PoolDuckVisuals
             }
             if (views.TryGetValue(zombie.Pointer, out var old))
             {
-                if (old.Id == zombie.DataID && old.Controller == zombie.mController.Pointer) continue;
+                if (old.Id == zombie.DataID && old.Controller == zombie.mController.Pointer && old.Renderer) continue;
                 old.Dispose(); views.Remove(zombie.Pointer);
             }
             var duck = duckSlot == null ? null : skeleton.Data.FindSkin("duckytube")?
@@ -416,17 +417,29 @@ public static class PoolDuckVisuals
                     if (candidate.Attachment.TryCast<Il2CppSpine.RegionAttachment>() is { } region)
                         area = Math.Abs(region.Width * region.Height);
                     else if (candidate.Attachment.TryCast<Il2CppSpine.MeshAttachment>() is { } mesh)
-                        area = Math.Abs(mesh.Width * mesh.Height);
+                    {
+                        // Mesh Width/Height can be zero in shipped rigs (Pogo).
+                        // Select using actual posed geometry, as View does.
+                        var points = new Il2CppInterop.Runtime.InteropTypes.Arrays.Il2CppStructArray<float>(mesh.WorldVerticesLength);
+                        mesh.ComputeWorldVertices(candidate, 0, points.Length, points, 0, 2);
+                        float minX = float.MaxValue, minY = float.MaxValue, maxX = float.MinValue, maxY = float.MinValue;
+                        for (int v = 0; v + 1 < points.Length; v += 2)
+                        {
+                            minX = Math.Min(minX, points[v]); maxX = Math.Max(maxX, points[v]);
+                            minY = Math.Min(minY, points[v + 1]); maxY = Math.Max(maxY, points[v + 1]);
+                        }
+                        area = (maxX - minX) * (maxY - minY);
+                    }
                     if (area > largestTorso) { torso = candidate; largestTorso = area; }
                 }
             }
-            if (duck == null && torso == null)
+            if (duck == null && torso == null && !customPlacement)
             {
                 if (reported.Add($"{zombie.mZombieType}:no-torso"))
                     LibraryMod.Instance.LoggerInstance.Warning($"Pool duck {zombie.mZombieType}: no active torso attachment; retrying.");
                 continue;
             }
-            try { views[zombie.Pointer] = new(zombie, skin, duck != null ? duckSlot! : torso!, duck); }
+            try { views[zombie.Pointer] = new(zombie, skin, duck != null ? duckSlot! : torso ?? skeleton.Slots.Items[0], duck); }
             catch (Exception error)
             {
                 if (reported.Add($"{zombie.mZombieType}:{error.Message}"))

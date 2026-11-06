@@ -4,11 +4,26 @@ namespace HarmonyLib
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class HarmonyPatch : Attribute { public HarmonyPatch(Type type, string method) { } }
 }
-namespace UnityEngine { public sealed class Sprite { } public sealed class SpriteRenderer { } }
+namespace UnityEngine {
+ public sealed class Sprite { } public sealed class SpriteRenderer { }
+ public struct Vector3 {
+  public float x,y,z; public Vector3(float x,float y,float z){this.x=x;this.y=y;this.z=z;}
+  public static Vector3 up=>new(0,1,0); public Vector3 normalized=>this;
+  public static Vector3 operator -(Vector3 a,Vector3 b)=>new(a.x-b.x,a.y-b.y,a.z-b.z);
+  public static Vector3 operator *(Vector3 a,float n)=>new(a.x*n,a.y*n,a.z*n);
+ }
+ public sealed class Transform { public Vector3 position; public Vector3 TransformVector(Vector3 value)=>value; }
+}
+namespace ZombieLibrary {
+ public static class PoolDuckVisuals { public static bool Waterline(Il2CppReloaded.Gameplay.Zombie zombie,UnityEngine.Transform artwork,out UnityEngine.Vector3 plane,out UnityEngine.Vector3 up){plane=new();up=UnityEngine.Vector3.up;return false;} }
+}
 namespace Il2CppReloaded.Services { public enum FoleyType { NewspaperRarrgh } }
 namespace Il2CppReloaded.Gameplay
 {
-    public enum ZombieType { Newspaper, Door, Bobsled, Balloon, Pogo, Ladder, Imp, Target, TrashCan, Normal, PeaHead, Football, JackInTheBox, Dancer, BackupDancer, Yeti, Gargantuar, RedeyeGargantuar, SquashHead, Boss }
+    public enum ZombiePhase { ZombieNormal, RisingFromGrave }
+    public enum ZombieHeight { ZombieNormal, OutOfPool }
+    public sealed class ZombieDrawPosition { public float BodyY; }
+    public enum ZombieType { TrafficCone, Pail, Newspaper, Door, Bobsled, Balloon, Pogo, Ladder, Imp, Target, TrashCan, Normal, PeaHead, Football, JackInTheBox, Dancer, BackupDancer, Yeti, Gargantuar, RedeyeGargantuar, SquashHead, Boss }
     public sealed class SoundSystem
     { public int Calls; public void PlayFoley(Il2CppReloaded.Services.FoleyType sound) => Calls++; }
     public sealed class App { public SoundSystem SoundSystem = new(); }
@@ -26,7 +41,9 @@ namespace Il2CppReloaded.Gameplay
     public sealed class Zombie
     {
         public ZombieType mZombieType; public Board mBoard = new();
-        public int mGraveX, mGraveY, mSummonCounter, PoolChecks; public bool mDead;
+        public int mGraveX, mGraveY, mSummonCounter, PoolChecks; public bool mDead,mInPool;
+        public ZombiePhase mZombiePhase; public ZombieHeight mZombieHeight;
+        public ZombieDrawPosition DrawPosition=new(); public ZombieDrawPosition GetDrawPos()=>DrawPosition;
         public void CheckForPool() => PoolChecks++;
         public void DieNoLoot() => mDead = true;
         public void Update() { } public void Reset() { }

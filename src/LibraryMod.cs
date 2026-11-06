@@ -1,6 +1,6 @@
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(ZombieLibrary.LibraryMod), "Zombie Library", "1.3.2", "Kevin / Codex")]
+[assembly: MelonInfo(typeof(ZombieLibrary.LibraryMod), "Zombie Library", "1.4.5", "Kevin / Codex")]
 [assembly: MelonGame("PopCap Games", "PvZ Replanted")]
 [assembly: MelonOptionalDependencies("DebugMod")]
 [assembly: MelonAdditionalDependencies("BloomEngine")]
@@ -11,7 +11,7 @@ namespace ZombieLibrary;
 public sealed class LibraryMod : MelonMod
 {
     internal static LibraryMod Instance = null!;
-    public override void OnInitializeMelon() { Instance = this; Zombotany.Register(); NativeDuckVariants.Register(); MenuPresentation.Register(this); }
-    public override void OnLateUpdate() { NativeZombieAlmanac.Update(); LibraryAlmanac.Update(); Zombies.RefreshVisuals(); PoolDuckVisuals.Update(); }
-    public override void OnDeinitializeMelon() { NativeZombieAlmanac.Clear(); LibraryAlmanac.Dispose(); Zombotany.Dispose(); NativeDuckVariants.Dispose(); PoolDuckVisuals.Clear(); MenuPresentation.Dispose(); }
+    public override void OnInitializeMelon() { Instance = this; Zombotany.Register(); NativeDuckVariants.Register(); NativeArmoredZombies.Register(); MenuPresentation.Register(this); }
+    public override void OnLateUpdate() { NativeZombieAlmanac.Update(); LibraryAlmanac.Update(); Zombies.RefreshVisuals(); NativeArmorVisuals.Update(); PoolDuckVisuals.Update(); }
+    public override void OnDeinitializeMelon() { NativeZombieAlmanac.Clear(); LibraryAlmanac.Dispose(); Zombotany.Dispose(); NativeDuckVariants.Dispose(); NativeArmorVisuals.Dispose(); PoolDuckVisuals.Clear(); MenuPresentation.Dispose(); }
 }

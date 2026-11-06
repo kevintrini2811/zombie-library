@@ -3,6 +3,8 @@ namespace HarmonyLib
 {
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class HarmonyPatch : Attribute { public HarmonyPatch(Type type, string method) { } }
+    public sealed class HarmonyPriority : Attribute { public HarmonyPriority(int value) { } }
+    public static class Priority { public const int First = 800, Last = 0; }
 }
 namespace UnityEngine {
  public sealed class Sprite { } public sealed class SpriteRenderer { }
@@ -32,16 +34,25 @@ namespace Il2CppReloaded.Gameplay
         public bool mDead, mIsAsleep, mIsOnBoard = true;
         public int mPlantHealth = 300;
         public SeedType mSeedType = SeedType.Hypnoshroom;
+        public void UpdateMagnetShroom() { }
     }
     public sealed class ZombieDrawPosition { public float BodyY; }
-    public enum ZombieType { TrafficCone, Pail, Newspaper, Door, Bobsled, Balloon, Pogo, Ladder, Imp, Target, TrashCan, Normal, PeaHead, Football, JackInTheBox, Dancer, BackupDancer, Yeti, Gargantuar, RedeyeGargantuar, SquashHead, Boss }
+    public enum ZombieType { Normal, Flag, TrafficCone, Polevaulter, Pail, Newspaper, Door, Football, Dancer, BackupDancer, DuckyTube, Snorkel, Zamboni, Bobsled, DolphinRider, JackInTheBox, Balloon, Digger, Pogo, Yeti, Bungee, Ladder, Catapult, Gargantuar, Imp, Boss, PeaHead, WallnutHead, JalapenoHead, GatlingHead, SquashHead, TallnutHead, RedeyeGargantuar, Zombatar, Target, TrashCan, Gravestone, NumZombieTypes }
+    public enum HelmType { None, TrafficCone, Pail, Football, Digger, Redeyes, Headband, Bobsled }
+    [Flags] public enum DamageFlags { BypassesShield=1, HitsShieldAndBody=2, Freeze=4, DoesntCauseFlash=8, DoesntLeaveBody=16, Spike=32 }
+    public enum GameScenes { Playing, Menu }
     public sealed class SoundSystem
     { public int Calls; public void PlayFoley(Il2CppReloaded.Services.FoleyType sound) => Calls++; }
-    public sealed class App { public SoundSystem SoundSystem = new(); }
+    public sealed class App { public SoundSystem SoundSystem = new(); public GameScenes GameScene = GameScenes.Playing; }
     public sealed class Board
     {
         public IntPtr Pointer = (IntPtr)1;
         public App mApp = new(); public bool mPaused; public bool Fail; public Zombie? Last;
+        public readonly List<Zombie> m_zombies = new();
+        public bool[] mZombieAllowed = new bool[(int)ZombieType.NumZombieTypes];
+        public readonly Queue<int> Rolls = new();
+        public int Rand(int maximum) => Rolls.Count == 0 ? 0 : Rolls.Dequeue() % maximum;
+        public Zombie? ZombieTryToGet(uint id) => m_zombies.FirstOrDefault(zombie=>zombie.DataID==id);
         public int GetNumRows() => 6;
         public bool RowCanHaveZombies(int row) => row >= 0 && row < 6;
         public Zombie? AddZombieInRow(ZombieType type, int row, int wave, bool shake)
@@ -52,6 +63,13 @@ namespace Il2CppReloaded.Gameplay
     }
     public sealed class Zombie
     {
+        public uint DataID = 1; public IntPtr Pointer = (IntPtr)1;
+        public HelmType mHelmType; public int mHelmHealth, mHelmMaxHealth;
+        public int mBodyHealth=270,mBodyMaxHealth=270,mShieldHealth,mShieldMaxHealth;
+        public int mFromWave=0,mJustGotShotCounter,ChillCalls;
+        public bool mIsBobsledLeader;
+        public uint[]? mFollowerZombieID;
+        public void ApplyChill(bool trap) { ChillCalls++; }
         public bool mHasHead = true, mMindControlled, mIsEating = true, Dying;
         public int mIceTrapCounter, mButteredCounter, ChewCalls;
         public Plant? Target;
@@ -65,6 +83,10 @@ namespace Il2CppReloaded.Gameplay
         public ZombieDrawPosition DrawPosition=new(); public ZombieDrawPosition GetDrawPos()=>DrawPosition;
         public void CheckForPool() => PoolChecks++;
         public void DieNoLoot() => mDead = true;
-        public void Update() { } public void Reset() { }
+        public void Update() { } public void Reset() { } public void Deserialize() { }
+        public int DropCalls; public Action<Zombie, DamageFlags>? Dropping;
+        public void ZombieInitialize() { } public void TakeHelmDamage() { }
+        public void UpdateZombieBobsled() { } public void TakeDamage() { } public void TakeBodyDamage() { } public void TakeShieldDamage() { }
+        public void DropHelm(DamageFlags flags) { ++DropCalls; Dropping?.Invoke(this, flags); }
     }
 }

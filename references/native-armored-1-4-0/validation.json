@@ -1,0 +1,157 @@
+{
+  "version": "1.4.5",
+  "reviewDate": "2026-11-06",
+  "result": "PASS for authorized native armored feature with explicit verification limits",
+  "finalProductSha256": "e5e86c7ae7d1ddd3f016a2333e32fede8cc75228ca4e098332ad2ffce0db2425",
+  "supportedGameAssemblySha256": "e7333eaf87996fa44b4a3526986272319b7d01f7acdbcff52451652f61ceb696",
+  "localEvidenceRoot": "../.test-runs relative to repository root; full local logs and native research archives are retained outside Git",
+  "registration": {
+    "count": 34,
+    "nativeFamilies": 17,
+    "evidence": [
+      "native-armor-1-4-2-matrix/registry-runtime.json",
+      "native-armor-1-4-2-matrix/registry-runtime-Gargantuar.json",
+      "native-armor-1-4-4-bobsled/runtime.json"
+    ],
+    "contract": "Actual native factory type and body/shield defaults compared with native controls; two hats per family."
+  },
+  "water": {
+    "count": 34,
+    "evidence": [
+      "native-armor-1-4-2-matrix/water-runtime.json",
+      "native-armor-1-4-4-abilities/bobsled-water-settled/runtime.json"
+    ],
+    "contract": "Native phases remain authoritative. Bungee airborne and Dolphin mounted phases do not show a premature duck; pool Pogo breaks its staff. Direct Bobsled placement may first slide then wear-crash; complete native crash animation settles all members into walking ducks."
+  },
+  "armor": {
+    "ordinaryUnshieldedCases": 22,
+    "ordinaryEvidence": "native-armor-1-4-2-matrix/water-runtime.json",
+    "ordinaryBodyCheck": "Archived actual results re-evaluated: every unshielded break leaves initial bodyHP minus1 and positive.",
+    "shieldCases": 8,
+    "shieldEvidence": [
+      "native-armor-1-4-5-shield/live/review-partial.json",
+      "native-armor-1-4-5-shield/live-trash-corrected/review.json",
+      "native-armor-1-4-4-abilities/shield-ladder-complete/runtime.json"
+    ],
+    "shieldBodyCheck": "Partial absorption, remainder1, exact helmet depletion, next body1 and large shield+helmet+17 verified with explicit positive body HP. Earlier bulk shield-break results asserting only mDeadfalse are superseded.",
+    "bobsledEvidence": "native-armor-1-4-4-bobsled/review.json",
+    "bungeeLimit": "Registration/helmet fields and native airborne/theft phases verified. No claim that ordinary ground-damage checks apply in every airborne phase."
+  },
+  "abilities": {
+    "Flag": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-2/review.json; native-armor-1-4-4-abilities/final-walk-stock-reuse/runtime.json",
+      "behavior": "Native flag, animated head, walking; land/water cold tint and clip."
+    },
+    "Polevaulter": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/pole-vault/runtime.json",
+      "behavior": "Vaults native plant and enters post-vault state with helmet intact; native control."
+    },
+    "Newspaper": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-5-shield/live/runtime.json",
+      "behavior": "Native shield break/rage; both helmet and body boundaries, positive body HP."
+    },
+    "Door": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-5-shield/live/runtime.json",
+      "behavior": "Native shield absorption/break; both helmet and body boundaries, positive body HP."
+    },
+    "BackupDancer": {
+      "result": "PASS within stated scope",
+      "evidence": "native-armor-1-4-4-abilities/backup-dance/runtime.json",
+      "behavior": "Same three native dance phases as native control; parentless explicit actor. Parent/FromWave binding is source-checked, not a complete live summoned-group proof."
+    },
+    "Bobsled": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-bobsled/review.json; native-armor-1-4-4-abilities/bobsled-magnet/runtime.json; native-armor-1-4-4-abilities/bobsled-water-settled/runtime.json",
+      "behavior": "All four actors retain native group, matching hats, native sled wear, real hits/overflow/drop/crash, post-crash protection; magnet removes outer bucket and preserves sled; both pool teams settle into eight armored ducks."
+    },
+    "DolphinRider": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/dolphin-native-complete/runtime.json",
+      "behavior": "Native entrance, riding, jump and DolphinWalkingInPool with native control; bucket retained."
+    },
+    "JackInTheBox": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/jack-native-explosion/runtime.json",
+      "behavior": "Native timer and explosion remove blocker plant; native control."
+    },
+    "Pogo": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/pogo-jump/runtime.json",
+      "behavior": "Jumps intact plant with native object/phase and bucket; native control. Native pool break retained."
+    },
+    "Yeti": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/yeti-retreat/runtime.json",
+      "behavior": "Timed native retreat reverses travel with bucket intact; native control."
+    },
+    "Bungee": {
+      "result": "PASS within native phase scope",
+      "evidence": "native-armor-1-4-4-abilities/bungee-native-target/runtime.json; native-armor-1-4-4-abilities/bungee-final-review/runtime.json",
+      "behavior": "Native selected target, plant ownership/grab, rising removal; bucket retained. Airborne phases retain native targeting/water behavior; no blanket airborne damage assertion."
+    },
+    "Ladder": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/ladder-complete/runtime.json; native-armor-1-4-4-abilities/shield-ladder-boundary/runtime.json; native-armor-1-4-4-abilities/shield-ladder-complete/runtime.json",
+      "behavior": "Places two real native ladder grid items with native control; both helmet/body overflow limits positive."
+    },
+    "Catapult": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/catapult-basketball/runtime.json",
+      "behavior": "Actual native basketball projectiles on both lanes; native control, bucket intact."
+    },
+    "Gargantuar": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/gargantuar-smash-throw-valid-lanes/runtime.json; native-armor-1-4-4-abilities/gargantuar-throw-distance/runtime.json",
+      "behavior": "Native smash; native Imp throw tested at valid native throw distance, with native control."
+    },
+    "Imp": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/final-walk-stock-reuse/runtime.json",
+      "behavior": "Native walking and body, cone retained; native control."
+    },
+    "TrashCan": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-5-shield/live-trash-corrected/review.json",
+      "behavior": "Native Garbage shield changes actor to Normal; exact own marker/remaining helmet/visuals preserved. Both damage boundaries and large overflow leave positive body HP."
+    },
+    "RedeyeGargantuar": {
+      "result": "PASS",
+      "evidence": "native-armor-1-4-4-abilities/gargantuar-throw-distance/runtime.json",
+      "behavior": "Native Giga health, smash and Imp throw with native control."
+    }
+  },
+  "assets": {
+    "portraits": 34,
+    "runtimeHelmetStages": 6,
+    "review": "All three exported contact sheets visually reviewed; native head slots, held equipment and skin sets checked. Runtime representative separators/colors/clip and all terrain snapshots reviewed.",
+    "proof": "../armored-assets/export-proof.json"
+  },
+  "regressions": {
+    "nativeArmorAssertions": 1121,
+    "registryAndHypnosis": "PASS",
+    "nativeColor": "PASS",
+    "headOwner": "PASS",
+    "sdkHarmony": "13 compiled patch classes / 34 hook arguments against installed SDK; real Harmony old-name negative control and positional binding PASS",
+    "build": "Release build zero warnings/errors"
+  },
+  "lifecycle": {
+    "modelReuse": "TrashCan/Redeye variants to native Zamboni/Normal and back to registered ConeFlag pass; Bobsled auxiliary state removed across reuse.",
+    "nativeStockAfterDisposal": "Native Cone/Pail visibly retain native helmets, zero own marker/aux state and no custom overlay after armored actor disposal.",
+    "controllerLimit": "Snapshots do not expose controller pointers; same-pointer controller reuse is not directly proven. Native CharacterSkinController.Reset image-swap/hidden-track cleanup was inspected."
+  },
+  "limits": [
+    "Automatic normal-level random-wave distribution was not sampled on a player profile. Production eligibility/probability and native caller/FromWave contracts are checked from actual source plus native evidence; protected debug boards intentionally suppress random substitutions.",
+    "Live BackupDancer comparisons use parentless explicit actors. Native parent/FromWave binding is source-checked; no full live summoned-group claim.",
+    "Native field serialization and alias restoration are source/native-trace and offline-contract checked. No live player-save roundtrip or profile workaround was used."
+  ],
+  "environment": {
+    "temporaryDebugBoard": true,
+    "profileWrites": false,
+    "settingsChanges": "Only temporary board difficulty/speed/pause; every speed selection restored.",
+    "log": "No new ERROR/Exception in final runtime; previously documented IGNORED shutdown/foreign errors remain classified separately."
+  }
+}

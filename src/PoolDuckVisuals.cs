@@ -76,6 +76,7 @@ public static class PoolDuckVisuals
         {
             var body = skin.GetComponent<MeshRenderer>();
             Renderer.enabled = Zombie.mInPool && Zombie.mVisible && body != null && body.gameObject.activeInHierarchy
+                && ZombiePoolRules.ShowTube(Zombie)
                 && Zombie.mZombiePhase is not (ZombiePhase.ZombieBurned or ZombiePhase.ZombieMowered or ZombiePhase.DancerRising);
             arms?.SetEnabled(Renderer.enabled);
             if (!Renderer.enabled) return;
@@ -373,6 +374,7 @@ public static class PoolDuckVisuals
         {
             var zombie = board.m_zombies[i];
             if (zombie == null || zombie.mDead || !zombie.mInPool || !ZombiePoolRules.Duck(zombie)
+                || !ZombiePoolRules.ShowTube(zombie)
                 || zombie.mController == null) continue;
             var skin = zombie.mController.AnimationController?.SkeletonAnimation;
             var skeleton = skin?.skeleton;
@@ -443,6 +445,14 @@ public static class PoolDuckVisuals
     {
         water = Vector3.zero; up = Vector3.up;
         if (!zombie.mInPool && zombie.mZombieHeight != ZombieHeight.OutOfPool) return false;
+        return NativeClipPlane(zombie, body, out water, out up);
+    }
+
+    // Native hats share the same shader-space lower edge during grave rises
+    // and pool entry. Keep the existing public water-only query unchanged.
+    internal static bool NativeClipPlane(Zombie zombie, Transform body, out Vector3 water, out Vector3 up)
+    {
+        water = Vector3.zero; up = Vector3.up;
         var effects = zombie.mController?.m_materialEffectController;
         var camera = Camera.main;
         if (effects == null || !effects.m_enableClipRect || camera == null) return false;

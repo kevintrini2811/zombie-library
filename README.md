@@ -1,4 +1,20 @@
-# Zombie Library 1.3.2
+# Zombie Library 1.4.5
+
+Version 1.4.5 forwards the actual native shield overflow into added helmets on registered zombies with both a native shield and an added helmet, including Door, Newspaper, Trash Can and Ladder zombies. Native shield-break abilities and damage flags remain responsible for gameplay. Trash Can variants retain their serialized identity and remaining helmet through the native transition to Normal after shield removal.
+
+Version 1.4.4 binds native Bobsled followers when their group links become available and keeps internal sled wear separate from added helmet damage. Surviving added hats still absorb normal hits after the native sled crashes; their native drop effects preserve the original sled fields.
+
+Version 1.4.3 clears exact registered marker fields at native actor initialization, including pooled native-type and generation changes. Unregistered/native fields and deserialized save identities remain unchanged.
+
+Version 1.4 adds 34 native armored zombies: Conehead and Buckethead variants of Flag, Polevaulter, Newspaper, Screen Door, Backup Dancer, Bobsled, Dolphin Rider, Jack-in-the-Box, Pogo, Yeti, Bungee, Ladder, Catapult, Gargantuar, Imp, Trash Can and Giga-gargantuar. Their original native AI types, abilities, bodies and held equipment remain responsible for gameplay. Each registration also supports the library's native pool and duck presentation.
+
+Cones have 370 helmet health; buckets have 1100. Existing Newspaper, Door, Ladder and Trash Can shields remain separate. The bobsled leader retains its original sled helmet and health: its additional hat uses a separate saved outer layer, so damaging or magnetizing the hat does not replace the sled or its native crash rules. Native bobsled followers receive matching hats without replacing group members.
+
+Natural variants are selected from actors the game actually spawns. A suitable native spawn has a one-in-three chance of receiving armor, and only armor whose normal Conehead/Buckethead type is allowed by that level can be chosen. When both are allowed, the selected armor is equally likely to be either kind. Actual native summons establish the base type's presence; an unrelated allowed-list bit is not required for implicit flag, dancer, imp or follower spawns. Explicit library spawns and temporary debug sessions do not receive random substitutions.
+
+The catalog owner is `native-armored`. IDs are `cone-{ZombieType}` and `bucket-{ZombieType}`, for example `cone-Flag` and `bucket-Gargantuar`. Cards and previews use complete native Spine portraits with matching head-socket armor. Runtime armor uses the real animated head attachment, native color effects and native clipping; separator rigs use the actual head mesh rather than their disabled root renderer. Version 1.4.1 fixes Harmony argument binding, 1.4.2 fixes separator-renderer ownership, 1.4.3 clears owned markers at native actor reuse, and 1.4.4 preserves bobsled group binding and the distinction between native sled wear and actual helmet hits.
+
+See [native gameplay and saved-state evidence](references/native-armored-1-4-0/port-notes.md) and [portrait export evidence](references/armored-assets/port-notes.md). The full 1.4.5 runtime matrix remains under review; a successful build or offline suite alone does not complete that review.
 
 Version 1.3.2 forwards custom zombie bite events through native Hypno-shroom consumption and hypnosis. Zombie Library validates registered actors and the actual native bite target; Eyes calls the shared helper at its own bite event. Native AI and saved identities remain unchanged.
 
@@ -113,7 +129,7 @@ Specify dependency in your own mod:
 [assembly: MelonAdditionalDependencies("ZombieLibrary")]
 ```
 
-`RegisterCatalog` must be called before `RegisterZombie`. IDs and identities must be unique. Once published, saved markers may not be changed. The library rejects synthetic zombie enums. Negative markers are supported in `Normal.mGraveX` and `PeaHead.mSummonCounter`; these fields are unused with the respective native running AI. Other native AI types first require proof of suitable stored fields.
+`RegisterCatalog` must be called before `RegisterZombie`. IDs and identities must be unique. Once published, saved markers may not be changed. The library rejects synthetic zombie enums. Negative markers are supported in `Normal`/`TrafficCone`/`Pail.mGraveX`, the seventeen armored native AI types listed above using `mGraveX`, and `PeaHead.mSummonCounter`. These fields are unused by the respective native AI in the supported game build; their native serialization and reset paths are retained. Other native AI types still require field-lifetime evidence before registration is allowed.
 
 `Apply(definition, actor)` converts a freshly created, living native zombie of the appropriate type. The marker field must be free. Other registered variants are not overwritten. Repeatedly applying the same definition will not initialize and resound the zombie. `Spawn` encapsulates native generation, checks row boundaries, and removes the new zombie if its downstream initialization fails. Deliberately forced summons retain native factory semantics; Natural spawn selection and level rules remain the responsibility of the creating mod.
 

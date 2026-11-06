@@ -89,9 +89,10 @@ public static class Zombies
         ArgumentNullException.ThrowIfNull(english); ArgumentNullException.ThrowIfNull(german);
         // Normal does not consume grave coordinates while walking. PeaHead
         // does not consume the dancer/imp summon counter. Never invent enum IDs.
-        if (identity.Marker >= 0 || !(identity.NativeType is (ZombieType.Normal or ZombieType.TrafficCone or ZombieType.Pail) && identity.Field == MarkerField.GraveX
+        if (identity.Marker >= 0 || !((identity.NativeType is ZombieType.Normal or ZombieType.TrafficCone or ZombieType.Pail
+                || NativeArmorTypes.Supports(identity.NativeType)) && identity.Field == MarkerField.GraveX
             || identity.NativeType == ZombieType.PeaHead && identity.Field == MarkerField.SummonCounter))
-            throw new ArgumentException("Use a negative marker in Normal/TrafficCone/Pail.GraveX or PeaHead.SummonCounter.");
+            throw new ArgumentException("Use a negative marker in a supported native GraveX field or PeaHead.SummonCounter.");
         if (definitions.Any(item => item.Identity == identity || item.Mod == mod && item.Id == id))
             throw new InvalidOperationException($"Duplicate zombie identity or ID: {mod.Id}:{id}");
         var definition = new ZombieDefinition(mod, id, identity, english, german, rubberDuck);
@@ -100,7 +101,8 @@ public static class Zombies
     }
 
     public static ZombieDefinition? Find(Zombie zombie) => definitions.FirstOrDefault(item => !item.DuckOnly
-        && item.Identity.NativeType == zombie.mZombieType && item.Identity.Read(zombie) == item.Identity.Marker)
+        && (item.Identity.NativeType == zombie.mZombieType || NativeArmorTypes.IsDetachedTrashCan(item.Identity, zombie))
+        && item.Identity.Read(zombie) == item.Identity.Marker)
         ?? definitions.FirstOrDefault(item => item.DuckOnly && item.Identity.NativeType == zombie.mZombieType);
 
     /// <summary>At a custom AI's committed plant-bite event, preserve native
@@ -133,7 +135,7 @@ public static class Zombies
         if (zombie.mDead || zombie.mZombieType != definition.Identity.NativeType)
             throw new ArgumentException("Zombie must be alive and have the definition's native type.");
         if (Find(zombie) == definition) return;
-        if (Find(zombie) != null) throw new InvalidOperationException("Zombie already belongs to another definition.");
+        if (Find(zombie) is { DuckOnly: false }) throw new InvalidOperationException("Zombie already belongs to another definition.");
         if (definition.Identity.Read(zombie) != 0)
             throw new InvalidOperationException("The serialized marker field is already in use.");
         if (definition.SpawnSound != null && !sounds.ContainsKey(definition.SpawnSound))
@@ -237,10 +239,17 @@ public static class Zombies
     { foreach (var definition in definitions) definition.RefreshVisuals?.Invoke(); }
     internal static void Reset(Zombie zombie)
     {
-        var definition = Find(zombie);
-        if (definition == null || definition.DuckOnly) return;
-        definition.Identity.Write(zombie, 0);
-        if (definition.Identity.Field == MarkerField.GraveX) zombie.mGraveY = 0;
+        // A pooled actor's native type may already describe its next life.
+        // Match only exact registered field/marker pairs, never a sign/range or
+        // the current type. Duck-only entries own no serialized field at all.
+        foreach (var definition in definitions)
+        {
+            if (definition.DuckOnly || definition.Identity.Read(zombie) != definition.Identity.Marker) continue;
+            definition.Identity.Write(zombie, 0);
+            // GraveX variants own the paired auxiliary state (Eyes state or
+            // Bobsled's outer helmet HP). Other fields/counters stay native.
+            if (definition.Identity.Field == MarkerField.GraveX) zombie.mGraveY = 0;
+        }
     }
 }
 
@@ -251,3 +260,13 @@ internal static class ZombieTickPatch
 [HarmonyPatch(typeof(Zombie), nameof(Zombie.Reset))]
 internal static class ZombieResetPatch
 { private static void Prefix(Zombie __instance) => Zombies.Reset(__instance); }
+
+// Native ZombieInitialize leaves legacy grave coordinates intact. This is the
+// fresh-life boundary for every allocator, independently of pool Reset timing.
+// Deserialization restores saved identity afterwards and never invokes Apply.
+[HarmonyPatch(typeof(Zombie), nameof(Zombie.ZombieInitialize))]
+internal static class ZombieInitializeMarkerResetPatch
+{
+    [HarmonyPriority(Priority.First)]
+    private static void Prefix(Zombie __instance) => Zombies.Reset(__instance);
+}

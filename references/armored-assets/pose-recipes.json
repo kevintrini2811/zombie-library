@@ -1,0 +1,104 @@
+{
+  "Flag": {
+    "skeleton": "Zombie",
+    "skins": "default,FrontArm,Head,flag_default",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "Polevaulter": {
+    "skeleton": "Zombie_polevaulter",
+    "skins": "default,FrontArm,Head,InnerArm",
+    "animation": "run",
+    "head": "anim_head1"
+  },
+  "Newspaper": {
+    "skeleton": "Zombie_paper",
+    "skins": "default,FrontArm,Head_Calm,Paper1",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "Door": {
+    "skeleton": "Zombie",
+    "skins": "default,BackArm_Hidden,FrontArm_Hidden,Head,screenDoor",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "BackupDancer": {
+    "skeleton": "Zombie_backup",
+    "skins": "default,FrontArm,Head",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "Bobsled": {
+    "skeleton": "Zombie_bobsled",
+    "skins": "default,Zombie_Bobsled_Head,Zombie_Bobsled_Uninjured",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "DolphinRider": {
+    "skeleton": "Zombie_dolphinrider",
+    "skins": "default,FrontArm,Head",
+    "animation": "walkdolphin",
+    "head": "anim_head1"
+  },
+  "JackInTheBox": {
+    "skeleton": "Zombie_jackbox",
+    "skins": "default,FrontArm,Head,Jackbox",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "Pogo": {
+    "skeleton": "Zombie_pogo",
+    "skins": "default,Zombie_Pogo_Head,Zombie_Pogo_Uninjured,Zombie_Pogo_Uninjured_PogoHand,Zombie_Pogo_Undamaged",
+    "animation": "pogo",
+    "head": "anim_head1"
+  },
+  "Yeti": {
+    "skeleton": "Zombie_yeti",
+    "skins": "default,Yeti_Head,Yeti_Uninjured",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "Bungee": {
+    "skeleton": "Zombie_bungi",
+    "skins": "default",
+    "animation": "idle",
+    "head": "anim_head1"
+  },
+  "Ladder": {
+    "skeleton": "Zombie_ladder",
+    "skins": "default,FrontArm,Head,Ladder_Default",
+    "animation": "ladderwalk",
+    "head": "anim_head1"
+  },
+  "Catapult": {
+    "skeleton": "Zombie_catapult",
+    "skins": "default,Zombie_Catapult_Pole_Undamaged,Zombie_Siding_Undamaged",
+    "animation": "walk",
+    "head": "Zombie_catapult_driver_head"
+  },
+  "Gargantuar": {
+    "skeleton": "Zombie_gargantuar",
+    "skins": "default,Zombie_Gargantuar_Body1,Zombie_Gargantuar_Head,Zombie_Gargantuar_Imp,Zombie_Gargantuar_Outerarm_Uninjured,Zombie_Gargantuar_Outerfoot_Uninjured,Zombie_Gargantuar_Pole",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "Imp": {
+    "skeleton": "Zombie_imp",
+    "skins": "default,Zombie_Imp_Head,Zombie_Imp_Uninjured",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "TrashCan": {
+    "skeleton": "Zombie",
+    "skins": "default,BackArm_Hidden,FrontArm_Hidden,Head,trashcan1",
+    "animation": "walk",
+    "head": "anim_head1"
+  },
+  "RedeyeGargantuar": {
+    "skeleton": "Zombie_gargantuar",
+    "skins": "default,Zombie_Gargantuar_Body1,Zombie_Gargantuar_Head_Redeye,Zombie_Gargantuar_Imp,Zombie_Gargantuar_Outerarm_Uninjured,Zombie_Gargantuar_Outerfoot_Uninjured,Zombie_Gargantuar_Pole",
+    "animation": "walk",
+    "head": "anim_head1"
+  }
+}

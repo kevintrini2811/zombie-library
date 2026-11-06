@@ -8,7 +8,12 @@ namespace ZombieLibrary;
 internal static class ZombiePoolRules
 {
     internal static bool Extra(ZombieType type) => Zombies.HasPoolType(type);
-    internal static bool Duck(Zombie zombie) => Zombies.HasNativeDuck(zombie.mZombieType) || Zombies.Find(zombie)?.RubberDuck == true;
+    internal static bool Duck(Zombie zombie) => Zombies.HasPoolType(zombie.mZombieType);
+    internal static bool BungeeAirborne(Zombie zombie) => zombie.mZombieType == ZombieType.Bungee
+        && zombie.mZombiePhase is not (ZombiePhase.BungeeAtBottom or ZombiePhase.BungeeGrabbing);
+    internal static bool DolphinRiding(Zombie zombie) => zombie.mZombieType == ZombieType.DolphinRider
+        && zombie.mZombiePhase is ZombiePhase.DolphinIntoPool or ZombiePhase.DolphinRiding or ZombiePhase.DolphinInJump;
+    internal static bool ShowTube(Zombie zombie) => !BungeeAirborne(zombie) && !DolphinRiding(zombie);
     internal static bool WalkInPool(Zombie zombie)
     {
         if (zombie.mShieldHealth > 0 && zombie.mZombieType is ZombieType.Door or ZombieType.TrashCan) return true;
@@ -44,6 +49,8 @@ internal static class SquashZombiePoolPatch
         bool flying = __instance.mZombieType == ZombieType.Balloon
             && (__instance.mZombiePhase is ZombiePhase.BalloonFlying or ZombiePhase.BalloonPopping
                 || __instance.mZombieHeight == ZombieHeight.Falling);
+        bool bungee = ZombiePoolRules.BungeeAirborne(__instance);
+        bool dolphin = ZombiePoolRules.DolphinRiding(__instance);
         if (!rising && !flying && ZombiePoolRules.Extra(__instance.mZombieType)
             && __instance.mBoard != null && !__instance.mDead
             && __instance.mRow >= 0 && __instance.mRow < __instance.mBoard.GetNumRows()
@@ -56,10 +63,10 @@ internal static class SquashZombiePoolPatch
                 && __instance.mIsBobsledLeader && __instance.mController != null)
                 PoolBobsled.ReadyCrash(__instance);
         }
-        bool change = !rising && !flying && ZombiePoolRules.Extra(__instance.mZombieType);
+        bool change = !rising && !flying && !bungee && !dolphin && ZombiePoolRules.Extra(__instance.mZombieType);
         __state = (__instance.DataID, __instance.mZombieType, change, __instance.mInPool);
         if (change) __instance.mZombieType = ZombieType.Normal;
-        return !rising && !flying;
+        return !rising && !flying && !bungee;
     }
 
     internal static void Finalizer(Zombie __instance, (uint Id, ZombieType Type, bool Changed, bool InPool) __state)

@@ -54,3 +54,50 @@ var artwork = new UnityEngine.Transform();
 Zombies.ApplyBodyDisplacement(emerging,artwork);
 Check(Math.Abs(artwork.position.y+282)<.001f,"Grave rise transfers native body displacement to imported artwork.");
 Check(Zombies.BodyClipPlane(emerging,artwork,new(),out _,out _),"Grave rise enables ground clipping.");
+
+var pea = Zombies.RegisterZombie(mod, "pea", new(ZombieType.PeaHead, MarkerField.SummonCounter, -400), text, text);
+foreach (var registered in new[] { definition, Zombies.All.First(x => x.Identity.NativeType == ZombieType.TrafficCone),
+    Zombies.All.First(x => x.Identity.NativeType == ZombieType.Pail), pea })
+{
+    var actor = new Zombie { mZombieType = registered.Identity.NativeType, mBoard = board };
+    registered.Identity.Write(actor, registered.Identity.Marker);
+    var mushroom = new Plant { mBoard = board }; actor.Target = mushroom;
+    Check(Zombies.TryHypnotizeBite(actor, mushroom), "Every registered identity can forward committed native hypnosis.");
+    Check(actor.ChewCalls == 1 && actor.mMindControlled && mushroom.mDead, "Full native chew callback consumes and controls.");
+    Check(Zombies.Find(actor) == registered, "Hypnosis preserves serialized identity.");
+    Check(!Zombies.TryHypnotizeBite(actor, mushroom) && actor.ChewCalls == 1, "Committed hypnosis cannot run twice.");
+}
+foreach (string guard in new[] { "unregistered", "asleep", "ordinary", "dead-plant", "detached", "zero-health", "other-board",
+    "other-target", "paused", "dead-zombie", "dying", "headless", "not-eating", "ice", "butter" })
+{
+    var actor = new Zombie { mZombieType = ZombieType.Normal, mGraveX = -100, mBoard = board };
+    var mushroom = new Plant { mBoard = board }; actor.Target = mushroom;
+    switch (guard)
+    {
+        case "unregistered": actor.mGraveX = 0; break;
+        case "asleep": mushroom.mIsAsleep = true; break;
+        case "ordinary": mushroom.mSeedType = SeedType.Peashooter; break;
+        case "dead-plant": mushroom.mDead = true; break;
+        case "detached": mushroom.mIsOnBoard = false; break;
+        case "zero-health": mushroom.mPlantHealth = 0; break;
+        case "other-board": mushroom.mBoard = new Board { Pointer = (IntPtr)2 }; break;
+        case "other-target": actor.Target = new Plant { Pointer = (IntPtr)2 }; break;
+        case "paused": board.mPaused = true; break;
+        case "dead-zombie": actor.mDead = true; break;
+        case "dying": actor.Dying = true; break;
+        case "headless": actor.mHasHead = false; break;
+        case "not-eating": actor.mIsEating = false; break;
+        case "ice": actor.mIceTrapCounter = 1; break;
+        case "butter": actor.mButteredCounter = 1; break;
+    }
+    Check(!Zombies.TryHypnotizeBite(actor, mushroom) && actor.ChewCalls == 0, "Native hypnosis eligibility preserved: " + guard);
+    board.mPaused = false;
+}
+Console.WriteLine("Native hypnosis forwarding: registered normal/cone/bucket/pea, identity retention, idempotence and eligibility guards passed.");
+var resistant = new Zombie { mZombieType = ZombieType.Normal, mGraveX = -100, mBoard = board, ResistsHypnosis = true };
+var resistedMushroom = new Plant { mBoard = board }; resistant.Target = resistedMushroom;
+Check(Zombies.TryHypnotizeBite(resistant, resistedMushroom) && resistedMushroom.mDead,
+    "A consumed Hypno-shroom finishes the bite even when another mod resists conversion.");
+Check(!resistant.mMindControlled && resistant.ChewCalls == 1 && Zombies.Find(resistant) == definition,
+    "Resisted hypnosis preserves the native rejection and registered identity.");
+Console.WriteLine("Hypnosis resistance: consumed-target handling preserves rejected native conversion.");

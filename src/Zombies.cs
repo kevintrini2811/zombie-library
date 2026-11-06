@@ -103,6 +103,28 @@ public static class Zombies
         && item.Identity.NativeType == zombie.mZombieType && item.Identity.Read(zombie) == item.Identity.Marker)
         ?? definitions.FirstOrDefault(item => item.DuckOnly && item.Identity.NativeType == zombie.mZombieType);
 
+    /// <summary>At a custom AI's committed plant-bite event, preserve native
+    /// Hypno-shroom consumption and hypnosis. Native AI already invokes this
+    /// through its chew animation; custom bite clocks must forward the event.
+    /// Returns true when the target was consumed or hypnosis committed, so
+    /// ordinary bite damage must stop even if another mod resists hypnosis.</summary>
+    public static bool TryHypnotizeBite(Zombie zombie, Plant plant)
+    {
+        if (Find(zombie) == null || zombie.mDead || zombie.IsDeadOrDying() || !zombie.mHasHead
+            || zombie.mMindControlled || !zombie.mIsEating || zombie.mBoard == null || zombie.mBoard.mPaused
+            || zombie.mIceTrapCounter > 0 || zombie.mButteredCounter > 0
+            || plant == null || plant.mDead || !plant.mIsOnBoard || plant.mPlantHealth <= 0 || plant.mIsAsleep
+            || plant.mSeedType != SeedType.Hypnoshroom || plant.mBoard?.Pointer != zombie.mBoard.Pointer)
+            return false;
+        var target = zombie.FindPlantTarget(ZombieAttackType.Chew);
+        if (target == null || target.Pointer != plant.Pointer || target.DataID != plant.DataID) return false;
+        // Reuse the complete native path: target rules, consumption, control,
+        // sound, particles and callbacks from other mods. Never write the flag.
+        var plantId = plant.DataID;
+        zombie.AnimateChewSound();
+        return plant.DataID != plantId || plant.mDead || zombie.mMindControlled;
+    }
+
     /// <summary>Convert a fresh native actor. Loading uses Find, never Initialize or SpawnSound.</summary>
     public static void Apply(ZombieDefinition definition, Zombie zombie)
     {

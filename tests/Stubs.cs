@@ -22,6 +22,17 @@ namespace Il2CppReloaded.Gameplay
 {
     public enum ZombiePhase { ZombieNormal, RisingFromGrave }
     public enum ZombieHeight { ZombieNormal, OutOfPool }
+    public enum SeedType { Peashooter, Hypnoshroom }
+    public enum ZombieAttackType { Chew }
+    public sealed class Plant
+    {
+        public uint DataID = 1;
+        public IntPtr Pointer = (IntPtr)1;
+        public Board mBoard = new();
+        public bool mDead, mIsAsleep, mIsOnBoard = true;
+        public int mPlantHealth = 300;
+        public SeedType mSeedType = SeedType.Hypnoshroom;
+    }
     public sealed class ZombieDrawPosition { public float BodyY; }
     public enum ZombieType { TrafficCone, Pail, Newspaper, Door, Bobsled, Balloon, Pogo, Ladder, Imp, Target, TrashCan, Normal, PeaHead, Football, JackInTheBox, Dancer, BackupDancer, Yeti, Gargantuar, RedeyeGargantuar, SquashHead, Boss }
     public sealed class SoundSystem
@@ -29,6 +40,7 @@ namespace Il2CppReloaded.Gameplay
     public sealed class App { public SoundSystem SoundSystem = new(); }
     public sealed class Board
     {
+        public IntPtr Pointer = (IntPtr)1;
         public App mApp = new(); public bool mPaused; public bool Fail; public Zombie? Last;
         public int GetNumRows() => 6;
         public bool RowCanHaveZombies(int row) => row >= 0 && row < 6;
@@ -40,6 +52,13 @@ namespace Il2CppReloaded.Gameplay
     }
     public sealed class Zombie
     {
+        public bool mHasHead = true, mMindControlled, mIsEating = true, Dying;
+        public int mIceTrapCounter, mButteredCounter, ChewCalls;
+        public Plant? Target;
+        public bool ResistsHypnosis;
+        public bool IsDeadOrDying() => mDead || Dying;
+        public Plant? FindPlantTarget(ZombieAttackType attack) => Target;
+        public void AnimateChewSound() { ChewCalls++; mMindControlled = !ResistsHypnosis; Target!.mDead = true; }
         public ZombieType mZombieType; public Board mBoard = new();
         public int mGraveX, mGraveY, mSummonCounter, PoolChecks; public bool mDead,mInPool;
         public ZombiePhase mZombiePhase; public ZombieHeight mZombieHeight;

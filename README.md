@@ -1,4 +1,6 @@
-# Zombie Library 1.3.1
+# Zombie Library 1.3.2
+
+Version 1.3.2 forwards custom zombie bite events through native Hypno-shroom consumption and hypnosis. Zombie Library validates registered actors and the actual native bite target; Eyes calls the shared helper at its own bite event. Native AI and saved identities remain unchanged.
 
 Version 1.3.1 uses native character colour state for imported zombie sprites, including cold blue, armour and pool ducks. Zombie Library owns the shared colour adapter; source alpha and pool clipping remain intact.
 

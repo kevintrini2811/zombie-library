@@ -1,0 +1,82 @@
+[
+  [
+    "/P_Almanac_Zombies/Canvas/Layout/Center/Panel/ItemGrid",
+    {
+      "m_AnchoredPosition": {
+        "x": 568.0,
+        "y": -315.0
+      },
+      "m_SizeDelta": {
+        "x": 1498.0,
+        "y": 1720.0
+      }
+    }
+  ],
+  [
+    "/P_Almanac_Zombies/Canvas/Layout/Center/Panel/ItemGrid/P_Almanac_ZombieItem/Portrait",
+    {
+      "m_AnchoredPosition": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_SizeDelta": {
+        "x": 212.0,
+        "y": 195.0
+      }
+    }
+  ],
+  [
+    "/P_Almanac_Zombies/Canvas/Layout/Center/Panel/ItemGrid",
+    {
+      "m_CellSize": {
+        "x": 292.0,
+        "y": 260.0
+      },
+      "m_Spacing": {
+        "x": 7.0,
+        "y": 29.0
+      },
+      "m_Constraint": 1,
+      "m_ConstraintCount": 5
+    }
+  ],
+  [
+    "/P_Almanac_Zombies/Canvas/Layout/Center/Panel/SelectedItem/SelectedItemPortrait",
+    {
+      "m_AnchoredPosition": {
+        "x": 0.0,
+        "y": -367.0
+      },
+      "m_SizeDelta": {
+        "x": 288.0,
+        "y": 288.0
+      }
+    }
+  ],
+  [
+    "/P_Almanac_Zombies/Canvas/Layout/Center/Panel/SelectedItem/Scroll View/Viewport/Content",
+    {
+      "m_AnchoredPosition": {
+        "x": -0.000244140625,
+        "y": 0.0
+      },
+      "m_SizeDelta": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  ],
+  [
+    "/P_Almanac_Zombies/Canvas/Layout/Center/Panel/SelectedItem/Scroll View/Viewport/Content/SelectedItemInfoLabel",
+    {
+      "m_AnchoredPosition": {
+        "x": -0.000244140625,
+        "y": 0.0
+      },
+      "m_SizeDelta": {
+        "x": 0.0,
+        "y": -28.3499755859375
+      }
+    }
+  ]
+]

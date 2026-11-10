@@ -1,0 +1,33 @@
+{
+  "icon_source": "/home/kevin/modding/pvzreplanted/fusion-mod/assets/debug-cards/zombie-packets.png",
+  "icon_rect": {
+    "Type": 0,
+    "Role": "Portrait",
+    "X": 0,
+    "Y": 1440,
+    "Width": 256,
+    "Height": 320
+  },
+  "duck_source": "fusion-mod/assets/pool-duck/duck.png",
+  "lawn_source": "plant-library/assets/lawn.png",
+  "icon_size": [
+    512,
+    512
+  ],
+  "lawn_brightness": 0.35,
+  "foreground_bounds": [
+    440,
+    440
+  ],
+  "foreground_bottom": 28,
+  "game_started": false,
+  "assets": {
+    "duck.png": "abb4e3e3de5fcddc371ebee643df48642ec5a71c5e567ae93c44b0d123dfc871",
+    "lawn.png": "69d7031ca62475ab0ecf1c2b7999318501215b2e0aeb5f3dbc29a4c9bc8d99da",
+    "zombie.png": "c57aed82c14531ef1b7454fc67306d88757c8582aa6212138f10ddf0e1b7a22e",
+    "zombie-card-background.png": "dc804b776203532bb6604123921bae6d714a570e366c6b56bea7e95979b87232",
+    "zombie-card-border.png": "2083b7702bc79ec651e90da3e7a5aa451451d6e646cb0296250657fc967fb7d1",
+    "zombie-card-over.png": "6921cdeb926fc59d022a2222e40a198ed5cb0ed01c32750c2306bb8d17f1c758",
+    "menu-icon.png": "e812f16743aa6a8533c2b80c77f2f2821e09d9e49bbb1083fbd4a86d17610598"
+  }
+}

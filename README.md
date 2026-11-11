@@ -1,4 +1,4 @@
-# Zombie Library 1.4.6
+# Zombie Library 1.4.7
 
 Version 1.4.5 forwards the actual native shield overflow into added helmets on registered zombies with both a native shield and an added helmet, including Door, Newspaper, Trash Can and Ladder zombies. Native shield-break abilities and damage flags remain responsible for gameplay. Trash Can variants retain their serialized identity and remaining helmet through the native transition to Normal after shield removal.
 

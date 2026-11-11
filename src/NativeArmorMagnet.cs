@@ -8,10 +8,20 @@ namespace ZombieLibrary;
 // every native distance, allegiance, equipment and cooldown rule still runs.
 // Attraction synchronously clears the borrowed native fields; finally commits
 // that removal to the added hat and restores the untouched native sled fields.
-internal static class NativeArmorMagnet
+public static class NativeArmorMagnet
 {
     internal readonly record struct Borrowed(Zombie Zombie, uint Id, HelmType Helm, int Health, int Maximum);
     [ThreadStatic] private static HashSet<IntPtr>? exposed;
+    [ThreadStatic] private static List<Action>? afterRestore;
+
+    // Work that can damage borrowed armor must wait for every enclosing borrow,
+    // including borrows owned by another, synchronously nested magnet update.
+    public static void RunAfterRestore(Action action)
+    {
+        ArgumentNullException.ThrowIfNull(action);
+        if (exposed is not { Count: > 0 }) action();
+        else (afterRestore ??= new()).Add(action);
+    }
 
     internal static List<Borrowed>? Begin(Plant plant)
     {
@@ -46,6 +56,16 @@ internal static class NativeArmorMagnet
             item.Zombie.mHelmHealth = item.Health;
             item.Zombie.mHelmMaxHealth = item.Maximum;
         }
+        if (exposed is { Count: > 0 } || afterRestore == null) return;
+        var callbacks = afterRestore;
+        afterRestore = null;
+        List<Exception>? failures = null;
+        foreach (var callback in callbacks)
+        {
+            try { callback(); }
+            catch (Exception error) { (failures ??= new()).Add(error); }
+        }
+        if (failures != null) throw new AggregateException("Magnet armor restore callbacks failed.", failures);
     }
 }
 
@@ -54,5 +74,13 @@ internal static class NativeArmorMagnetSelectionPatch
 {
     private static void Prefix(Plant __instance, out List<NativeArmorMagnet.Borrowed>? __state) =>
         __state = NativeArmorMagnet.Begin(__instance);
-    private static void Finalizer(List<NativeArmorMagnet.Borrowed>? __state) => NativeArmorMagnet.Restore(__state);
+    internal static Exception? Finalizer(List<NativeArmorMagnet.Borrowed>? __state, Exception? __exception)
+    {
+        try { NativeArmorMagnet.Restore(__state); }
+        catch (Exception error)
+        {
+            return __exception == null ? error : new AggregateException(__exception, error);
+        }
+        return __exception;
+    }
 }

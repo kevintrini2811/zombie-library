@@ -359,13 +359,41 @@ factoryReset.Invoke(null, new object[] { saved });
 saved.mGraveX = NativeArmorTypes.Marker(ZombieType.RedeyeGargantuar, true); saved.mGraveY = 42;
 Check(Zombies.Find(saved)?.Id == NativeArmorTypes.Id(ZombieType.RedeyeGargantuar, true) && saved.mGraveY == 42,
     "Save identity and state restore unchanged after the fresh-life boundary.");
+
+// The safe service boundary must not observe a failed/partial board or rerun
+// variant initialization, which would refill the native serialized helmet.
+var loadBoard = new Board();
+var loadedArmor = Actor(entries[0].Identity.NativeType, loadBoard);
+loadedArmor.mGraveX = entries[0].Identity.Marker;
+loadedArmor.mHelmType = HelmType.TrafficCone;
+loadedArmor.mHelmHealth = 17; loadedArmor.mHelmMaxHealth = 370;
+var deadArmor = Actor(loadedArmor.mZombieType, loadBoard);
+deadArmor.mGraveX = loadedArmor.mGraveX; deadArmor.mDead = true;
+var foreignArmor = Actor(loadedArmor.mZombieType, new Board { Pointer = (IntPtr)99 });
+foreignArmor.mGraveX = loadedArmor.mGraveX;
+var zeroIdArmor = Actor(loadedArmor.mZombieType, loadBoard);
+zeroIdArmor.mGraveX = loadedArmor.mGraveX; zeroIdArmor.DataID = 0;
+loadBoard.m_zombies.AddRange(new[] { loadedArmor, Actor(ZombieType.Normal, loadBoard), deadArmor, foreignArmor, zeroIdArmor });
+var loadService = new Il2CppReloaded.Services.SerializationService { App = new App { Board = loadBoard } };
+var loadPostfix = typeof(NativeArmoredLoadPatch).GetMethod("Postfix", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic)!;
+NativeArmorVisuals.Observed.Clear();
+loadPostfix.Invoke(null, new object[] { loadService, false });
+Check(NativeArmorVisuals.Observed.Count == 0, "Failed native service load does not observe a partial board.");
+loadPostfix.Invoke(null, new object[] { loadService, true });
+Check(NativeArmorVisuals.Observed.SequenceEqual(new[] { loadedArmor }), "Successful native service load observes only live owned armor on its board.");
+Check(loadedArmor.mHelmHealth == 17 && loadedArmor.mHelmMaxHealth == 370 && loadedArmor.mGraveX == entries[0].Identity.Marker,
+    "Load observation preserves damaged serialized armor and identity without initialization.");
+loadService.App = null;
+loadPostfix.Invoke(null, new object[] { loadService, true });
+Check(NativeArmorVisuals.Observed.Count == 1, "Missing app after native service load has no observation.");
 Console.WriteLine($"PASS {checks} native armor registration, level, serialization, group, damage and magnet checks.");
 
 namespace ZombieLibrary
 {
     internal static class NativeArmorVisuals
     {
-        internal static void Observe(Zombie zombie) { }
+        internal static readonly List<Zombie> Observed = new();
+        internal static void Observe(Zombie zombie) => Observed.Add(zombie);
         internal static UnityEngine.Sprite Portrait(ZombieType type,bool bucket)=>new();
     }
 }

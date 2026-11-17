@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Il2CppReloaded.Gameplay;
+using Il2CppReloaded.Services;
 
 namespace ZombieLibrary;
 
@@ -163,11 +164,22 @@ internal static class NativeArmoredSpawnPatch
     private static void Postfix(Zombie __instance, Zombie theParentZombie) => NativeArmoredZombies.ReplaceNatural(__instance, theParentZombie);
 }
 
-[HarmonyPatch(typeof(Zombie), nameof(Zombie.Deserialize))]
+// Keep native ref-struct readers outside IL2CPP Harmony trampolines. Observe
+// restored armor only after the native service has completed the entire board.
+[HarmonyPatch(typeof(SerializationService), nameof(SerializationService.Deserialize))]
 internal static class NativeArmoredLoadPatch
 {
-    private static void Postfix(Zombie __instance)
-    { if (NativeArmoredZombies.TryKind(__instance, out _)) NativeArmorVisuals.Observe(__instance); }
+    private static void Postfix(SerializationService __instance, bool __result)
+    {
+        if (!__result || __instance.App?.Board is not { } board) return;
+        for (int i = 0; i < board.m_zombies.Count; ++i)
+        {
+            var zombie = board.m_zombies[i];
+            if (zombie != null && !zombie.mDead && zombie.DataID != 0
+                && zombie.mBoard?.Pointer == board.Pointer && NativeArmoredZombies.TryKind(zombie, out _))
+                NativeArmorVisuals.Observe(zombie);
+        }
+    }
 }
 
 [HarmonyPatch(typeof(Zombie), nameof(Zombie.TakeHelmDamage))]

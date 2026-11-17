@@ -1,4 +1,6 @@
-# Zombie Library 1.4.7
+# Zombie Library 1.4.8
+
+Version 1.4.8 registers restored native armor visuals after a successful parameterless `SerializationService.Deserialize`, keeping the native by-reference reader outside Harmony trampolines. It observes only live registered armor on the current board and preserves serialized helmet state. Release build, 1,125 linked-source armor checks and actual SDK binding checks for 13 patch classes/36 arguments passed. A focused native fixture load/save succeeded with Fusion 24.0.1; the change does not establish sole causality for an earlier failed load or complete the broader armor matrix below.
 
 Version 1.4.5 forwards the actual native shield overflow into added helmets on registered zombies with both a native shield and an added helmet, including Door, Newspaper, Trash Can and Ladder zombies. Native shield-break abilities and damage flags remain responsible for gameplay. Trash Can variants retain their serialized identity and remaining helmet through the native transition to Normal after shield removal.
 

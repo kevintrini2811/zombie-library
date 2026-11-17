@@ -27,6 +27,8 @@ foreach (string name in names)
     string methodName = (string)annotation.ConstructorArguments[1].Value!;
     var original = owner.GetMethods(All).Single(m => m.Name == methodName);
     var arguments = original.GetParameters();
+    Check(!arguments.Any(p => ValueType(p.ParameterType).Name is "ReloadedBinaryReader" or "ReloadedBinaryWriter"),
+        name + " must not trampoline native ref-struct serialization arguments");
     Type? stateType = null;
     foreach (var hook in patch.GetMethods(All | BindingFlags.DeclaredOnly)
         .Where(m => m.Name is "Prefix" or "Postfix" or "Finalizer"))
@@ -38,6 +40,8 @@ foreach (string name in names)
             Check(actual.IsAssignableFrom(owner), name + " has wrong instance type");
         else if (parameterName == "__result")
             Check(actual == ValueType(original.ReturnType), name + " has wrong result type");
+        else if (parameterName == "__exception")
+            Check(actual.FullName == "System.Exception", name + " has wrong exception type");
         else if (parameterName == "__state")
         {
             Check(stateType == null || stateType == actual, name + " has mismatched hook state");

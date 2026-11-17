@@ -19,7 +19,15 @@ namespace UnityEngine {
 namespace ZombieLibrary {
  public static class PoolDuckVisuals { public static bool Waterline(Il2CppReloaded.Gameplay.Zombie zombie,UnityEngine.Transform artwork,out UnityEngine.Vector3 plane,out UnityEngine.Vector3 up){plane=new();up=UnityEngine.Vector3.up;return false;} }
 }
-namespace Il2CppReloaded.Services { public enum FoleyType { NewspaperRarrgh } }
+namespace Il2CppReloaded.Services
+{
+    public enum FoleyType { NewspaperRarrgh }
+    public sealed class SerializationService
+    {
+        public Il2CppReloaded.Gameplay.App? App;
+        public bool Deserialize() => true;
+    }
+}
 namespace Il2CppReloaded.Gameplay
 {
     public enum ZombiePhase { ZombieNormal, RisingFromGrave }
@@ -43,7 +51,7 @@ namespace Il2CppReloaded.Gameplay
     public enum GameScenes { Playing, Menu }
     public sealed class SoundSystem
     { public int Calls; public void PlayFoley(Il2CppReloaded.Services.FoleyType sound) => Calls++; }
-    public sealed class App { public SoundSystem SoundSystem = new(); public GameScenes GameScene = GameScenes.Playing; }
+    public sealed class App { public SoundSystem SoundSystem = new(); public GameScenes GameScene = GameScenes.Playing; public Board? Board; }
     public sealed class Board
     {
         public IntPtr Pointer = (IntPtr)1;
